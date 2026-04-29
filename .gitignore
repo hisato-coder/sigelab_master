@@ -1,0 +1,17 @@
+# LaTeX 中間ファイル
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+
+# PDF ファイル（必要に応じて）
+*submit.pdf
+
+# OS 固有ファイル
+.DS_Store
+Thumbs.db
