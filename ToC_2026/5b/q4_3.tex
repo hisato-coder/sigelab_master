@@ -28,6 +28,7 @@
 \frametitle{Q4(3)}
 
 \textbf{証明:}
+
 $A$ が決定可能であると仮定し、$A$から$A \leq_m 0^*1^*$への写像帰着$f$を実現するチューリング機械$F$を構成する。
 $A$は決定可能なので、任意の入力$w$に対して $A$ を決定するチューリング機械 $M_A$ が存在する。
 $F$（入力 $w$）:
@@ -38,9 +39,38 @@ $F$（入力 $w$）:
 \end{enumerate}
 
 ここで、$M_A$は必ず停止するため、$f$は計算可能関数である。また、$w \in A$ のとき $f(w) = 01 \in 0^*1^*$ であり、$w \notin A$ のとき $f(w) = 10 \notin 0^*1^*$ であるため、$A \leq_m 0^*1^*$ が成立する。
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Q4(3)}
+
+\begin{alertblock}{必要条件}
+$A \leq_m 0^*1^*$ $\Longrightarrow$ 言語 $A$ が決定可能である
+\end{alertblock}
+次に、必要性の証明を示す。
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Q4(3)}
+
+\begin{alertblock}{定理 5.22}
+もし、$A \leq_m B$ であり、かつB が決定可能であるならば、A も決定可能である
+\end{alertblock}
+
+この定理を用いて、必要性の証明を行う。
+
+\end{frame}
 
 
 
+\begin{frame}[fragile]
+\frametitle{Q4(3)}
+
+\textbf{証明:}
+
+$A \leq_m 0^*1^*$ と仮定する。$0^*1^*$ は正規言語であるため、決定可能である。
+したがって、定理5.22より、$A$も決定可能である。
 
 
 
