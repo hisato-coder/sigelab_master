@@ -88,6 +88,38 @@ $M$ が $w$ を受理するかどうかで、$M'$ の受理する言語 $L(M')$ 
 \end{itemize}
 \end{frame}
 
+\begin{frame}[allowframebreaks, fragile]
+\frametitle{Q3(3): 解答例}
+
+\textbf{証明:} $T$ がTuring認識不可能であることを示す．
+
+$\overline{A_{\mathrm{TM}}}$ がTuring認識不可能であることから，$A_{\mathrm{TM}} \le_m \overline{T}$ を示す．
+(定理より、$A_{\mathrm{TM}} \le_m \overline{T}$ を示すことは $\overline{A_{\mathrm{TM}}} \le_m T$ を示すことと同値である．)
+
+$A_{\mathrm{TM}}$ から $\overline{T}$ への写像帰着関数 $f$ を計算するTuring機械 $F$ を以下のように構築する．\\
+$F=$ 「入力 $\langle M, w \rangle$ に対して：
+\begin{enumerate}
+    \item 以下のTuring機械 $M'$ を構築する． \\
+     $M'=$ 「入力 $x$ に対して：
+     \begin{itemize}
+         \item $x = 00$ ならば受理する．
+         \item $x \neq 10$ ならば拒否する．
+         \item $M$ を入力 $w$ でシミュレートし，$M$ が $w$ を受理したならば受理する．」
+     \end{itemize}
+    \item $\langle M' \rangle$ を出力する．」
+\end{enumerate}
+
+\framebreak % ここで自動的に次のスライドに分割されます
+
+$M'$ の定義より，$M$ が $w$ を受理するならば $L(M') = \{00, 10\}$ となり，そうでなければ $L(M') = \{00\}$ となる．
+
+したがって，$M$ が $w$ を受理する場合に限り $L(M')$ は反転について閉じないため，
+$\langle M, w \rangle \in A_{\mathrm{TM}} \iff \langle M' \rangle \in \overline{T}$ が成り立つ．
+
+ゆえに，関数 $f$ は $A_{\mathrm{TM}}$ から $\overline{T}$ への写像帰着である．
+これは $\overline{A_{\mathrm{TM}}}$ から $T$ への写像帰着でもあるため，$T$ はTuring認識不可能である．\qed
+\end{frame}
+
 \begin{frame}[fragile]
 \frametitle{Q3(4) $OL$ のTuring認識可能性 (2/3): $M'$の構成}
 $OL$ から $\overline{E_{\mathrm{TM}}}$ への写像帰着関数を計算するTM $F$ を以下のように構築する．
@@ -123,4 +155,33 @@ $OL$ から $\overline{E_{\mathrm{TM}}}$ への写像帰着関数を計算する
 \vspace{0.5em}
 したがって、$\langle M, A \rangle \in OL \iff \langle M' \rangle \in \overline{E_{\mathrm{TM}}}$ が成立する．\\
 $OL \le_m \overline{E_{\mathrm{TM}}}$ が示されたため、$\overline{E_{\mathrm{TM}}}$ の性質より $OL$ もTuring認識可能である．\qed
+\end{frame}
+
+\begin{frame}[allowframebreaks, fragile]
+\frametitle{Q3(4): 解答例}
+
+\textbf{証明:} $OL$ がTuring認識可能であることを示す．
+
+$\overline{E_{\mathrm{TM}}}$ がTuring認識可能であることから，$OL \le_m \overline{E_{\mathrm{TM}}}$ を示す．
+$OL$ から $\overline{E_{\mathrm{TM}}}$ への写像帰着関数 $f_{4}$ を計算するTuring機械 $F$ を以下のように構築する．\\
+$F=$ 「入力 $\langle M, A \rangle$ に対して：
+\begin{enumerate}
+    \item 以下のTuring機械 $M'$ を構築する． \\
+     $M'=$ 「入力 $x$ に対して：
+     \begin{itemize}
+         \item $A$ を入力 $x$ でシミュレートし，$A$ が $x$ を拒否するならば拒否する．
+         \item $M$ を入力 $x$ でシミュレートし，$M$ が $x$ を受理したならば受理する．」
+     \end{itemize}
+    \item $\langle M' \rangle$ を出力する．」
+\end{enumerate}
+
+\framebreak % ここで自動的に次のスライドに分割されます
+
+$M'$ の定義より，$M$ が $A$ に属する文字列を受理するならば $L(M') \neq \emptyset$ となり，そうでなければ $L(M') = \emptyset$ となる．
+
+したがって，$M$ が $A$ に属する文字列を受理しない場合に限り $M'$ は空言語を受理するため，
+$\langle M, A \rangle \in OL \iff \langle M' \rangle \in \overline{E_{\mathrm{TM}}}$ が成り立つ．
+
+ゆえに，関数 $f_{4}$ は $OL$ から $\overline{E_{\mathrm{TM}}}$ への写像帰着である．
+$\overline{E_{\mathrm{TM}}}$ はTuring認識可能であるため，$OL$ もTuring認識可能である．\qed
 \end{frame}
