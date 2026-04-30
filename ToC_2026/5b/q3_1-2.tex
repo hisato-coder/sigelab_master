@@ -1,6 +1,93 @@
 \begin{frame}[fragile]
-\frametitle{Q3 (1)-(2)}
-
-% コンテンツをここに記入
+\frametitle{Q3 (1)}
 %frameがスライド1枚を表す
+\begin{alertblock}{問い}
+    Q1(1)の言語$EPS_{TM} = \{\langle M \rangle \mid L(M) = \{\varepsilon\}\}$について、写像帰着を
+    示すことで、Turing認識可能またはTuring認識不可能であることを証明しなさい。
+\end{alertblock}
+\begin{itemize}
+    \item \textbf{目標:}$EPS_{TM}$ がTuring認識可能であることを示す。
+    \item \textbf{証明のキーポイント:} \alert{$A_{TM}$ から $EPS_{TM}$ への写像帰着を構築する}
+    \begin{itemize}
+        \item 定理5.28「$A \le_m B$でかつ$B$がTuring認識可能であれば、$A$もTuring認識可能である。」を利用する。
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Q3 (1)}
+\textbf{証明:}
+$EPS_{TM}$から$A_{TM}$のreduction $f$について、
+$f (<M>) = <M, \varepsilon>$を定義する。
+
+このとき、以下が成り立つ：
+
+$M \text{ が } \varepsilon \text{ を受理する } \Longrightarrow  L(M) = \{\varepsilon\}$ なので $\langle M \rangle \in EPS_{TM}$
+
+$M \text{ が } \varepsilon \text{ を受理しない } \Longrightarrow  L(M) = \emptyset$ なので $\langle M \rangle \notin EPS_{TM}$
+
+以上により、$f$が実現する関数が確かに$EPS_{TM}$ から $A_{TM}$ への計算可能関数であり、$EPS_{TM}$は$A_{TM}$に写像帰着可能である。
+$A_{TM}$はTuring認識可能であることから、$EPS_{TM}$もTuring認識可能である。\qed
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Q3 (2)}
+% コンテンツをここに記入
+\begin{alertblock}{問い}
+    Q1(2)の言語$ZO = \{\langle M \rangle \mid M \text{ は } L(M) = 0^*1^* \text{ を受理するチューリング機械 } \}$について、写像帰着を
+    示すことで、Turing認識可能またはTuring認識不可能であることを証明しなさい。
+\end{alertblock}
+\begin{itemize}
+    \item \textbf{目標:}$ZO$ がTuring認識不可能であることを示す。
+    \item \textbf{証明のキーポイント:} \alert{$\overline{A_{TM}}$ から $ZO$ への写像帰着を構築する}
+    \begin{itemize}
+        \item 系5.29「$A \le_m B$でかつ$A$がTuring認識不可能であれば、$B$もTuring認識不可能である。」を利用する。
+        \item $\overline{A_{TM}}$はTuring認識不可能であることを用いる。
+        \item $\overline{A_{TM}}$ から $ZO$ への写像帰着を構築することで、$ZO$がTuring認識不可能であることを示す。  
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Q3 (2)}
+\textbf{証明:}
+$\overline{A_{TM}}$から$ZO$へのreduction $f$を実現するTM$F$を以下のように構築する。
+
+\begin{block}{$F$ のアルゴリズム}
+  入力 $\langle M, w \rangle$ に対して：\\
+  1. 以下のTM $M'$ を構築する．\\
+  \quad $M'=$ 『入力 $x$ に対して：
+  \begin{itemize}
+      \item $x = 0^*1^*$ ならば\textbf{受理}する．
+      \item $M$ を入力 $w$ でシミュレートし、$M$ が受理したならば\textbf{受理}する．』
+  \end{itemize}
+  2. $\langle M' \rangle$ を出力する．
+\end{block}
+
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Q3(2)}
+$M$ が $w$ を受理するかどうかで、$M'$ の受理する言語 $L(M')$ が変化する．
+
+\begin{itemize}
+  \item \textbf{ケース1: $M$ が $w$ を受理する場合}
+  \begin{itemize}
+      \item $M'$ は $0^*1^*$を受理し、それ以外も受理する $\Rightarrow L(M') = \{\Sigma^*\}$これは$<M'> \notin ZO$
+      \item $M(w)$が受理する場合、$\overline{A_{TM}}$の定義より、$\Rightarrow <M, w> \notin \overline{A_{TM}}$
+      \item ゆえに、 $<M, w> \notin \overline{A_{TM}}$ かつ $<M'> \notin ZO$
+  \end{itemize}
+  \vspace{1em}
+  \item \textbf{ケース2: $M$ が $w$ を受理しない場合}
+  \begin{itemize}
+      \item $M'$ は $0^*1^*$を受理し、それ以外は受理しない $\Rightarrow L(M') = \{0^*1^*\}$これは$<M'> \in ZO$
+      \item $M(w)$が受理しない場合、$\overline{A_{TM}}$の定義より、$\Rightarrow <M, w> \in \overline{A_{TM}}$
+      \item ゆえに、 $<M, w> \in \overline{A_{TM}}$ かつ $<M'> \in ZO$
+  \end{itemize}
+  \vspace{0.5em}
+したがって、$\langle M, w \rangle \in \overline{A_{TM}} \iff \langle M' \rangle \in {ZO}$ が成立する．\\
+$\overline{A_{TM}} \le_m {ZO}$ が示されたため、$\overline{A_{TM}}$ の性質より ${ZO}$ もTuring認識不可能である。\qed
+\end{itemize}
 \end{frame}
