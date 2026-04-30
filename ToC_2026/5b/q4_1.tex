@@ -1,5 +1,5 @@
 \begin{frame}[fragile]
-\frametitle{Q4-1}
+\frametitle{Q4 (1)}
 
 \begin{alertblock}{問い}
   Theorem 5.3: $REGULAR_{\mathrm{TM}}$ と $\overline{REGULAR_{\mathrm{TM}}}$ は
@@ -7,6 +7,38 @@
 \end{alertblock}
 
 \end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Q4 (1) 解答}
+
+\begin{itemize}
+	\item $\overline{A_{\mathrm{TM}}} \le_m REGULAR_{\mathrm{TM}}$ を示す。
+	\item 入力 $\langle M,w\rangle$ から TM $N$ を作る。
+	\item $N$ は $x$ が $0^n1^n$ の形のときだけ $M$ を $w$ 上でシミュレートする。
+	\item $M$ が $w$ を受理したら受理し，そうでなければループする。
+	\item 受理しないとき $L(N)=\emptyset$，受理するとき $L(N)=\{0^n1^n\mid n\ge 0\}$。
+	\item よって $REGULAR_{\mathrm{TM}}$ は Turing 認識不可能。
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Q4 (1) 解答の続き}
+
+\begin{itemize}
+	\item 今度は $A_{\mathrm{TM}} \le_m \overline{REGULAR_{\mathrm{TM}}}$ を示す。
+	\item 同じ入力 $\langle M,w\rangle$ から TM $N'$ を作る。
+	\item $N'$ も $x$ が $0^n1^n$ の形のときだけ $M$ を $w$ 上でシミュレートする。
+	\item $M$ が $w$ を受理したら受理し，そうでなければループする。
+	\item 受理するとき $L(N')=\{0^n1^n\mid n\ge 0\}$，受理しないとき $L(N')=\emptyset$。
+	\item よって $\overline{REGULAR_{\mathrm{TM}}}$ も Turing 認識不可能。
+\end{itemize}
+
+\end{frame}
+
+
+
 
 
 
