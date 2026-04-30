@@ -13,6 +13,9 @@
 *.run.xml
 *.synctex.gz
 *.toc
+*.nav
+*.snm
+*.vrb
 
 # PDF ファイル（必要に応じて）
 *.pdf
