@@ -8,9 +8,11 @@
 *.synctex.gz
 *.fdb_latexmk
 *.fls
+*.nav
+*.pdf
 
 # PDF ファイル（必要に応じて）
-*submit.pdf
+# *submit.pdf
 
 # OS 固有ファイル
 .DS_Store
