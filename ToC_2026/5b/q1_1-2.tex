@@ -1,6 +1,70 @@
 \begin{frame}[fragile]
 \frametitle{Q1 (1)-(2)}
 
+\begin{alertblock}{問題}
+
+$EPS_{TM} = \{\langle M \rangle \mid L(M) = \{\varepsilon\}\}$ が決定可能か？
+
+\end{alertblock}
+
+この問題に対して、$A_{TM}$ から $EPS_{TM}$ の写像帰着によって、$EPS_{TM}$ が決定不能であることを証明する。
+
+
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+\frametitle{Q1 (1)-(2)}
+
 % コンテンツをここに記入
+\textbf{証明:}
+
+$A_{TM}$ を $EPS_{TM}$ に写像帰着させることを考える。
+$A_{TM}$ から $EPS_{TM}$ への写像帰着を $f_1$ を実現するTuring機械 $F_1$ を構成する。
+
+$F_1$（入力 $\langle M, \omega  \rangle$）:
+
+\begin{enumerate}
+    \item TM $M'$ を以下の構成せよ。
+
+     $M'$（入力 $x$）:
+
+    \begin{enumerate}
+        \item[1.] もし $x  \neq \varepsilon$ ならば、拒否せよ。
+        \item[2.] もし $x = \varepsilon$ ならば、$M$ を $\omega$ 上で走査せよ。
+        \item[3.] $M$ が $\omega$ を受理したなら、受理せよ。
+    \end{enumerate}
+
+    \item $\langle M' \rangle$ を出力せよ。
+
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Q1 (1)-(2)}
+
+このとき、以下が成り立つ：
+
+\[
+M \text{ が } \omega \text{ を受理する } \Longleftrightarrow L(M') = \{\varepsilon\} \Longleftrightarrow \langle M' \rangle \in EPS_{TM}
+\]
+
+\[
+M \text{ が } \omega \text{ を受理しない } \Longleftrightarrow L(M') = \emptyset \Longleftrightarrow \langle M' \rangle \notin EPS_{TM}
+\]
+
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Q1 (1)-(2)}
+
+以上により、$\langle M, \omega  \rangle \in A_{TM} なら f_1(\langle M, \omega  \rangle) \in EPS_{TM} $ かつ $\langle M, \omega  \rangle \notin A_{TM} なら f_1(\langle M, \omega  \rangle) \notin EPS_{TM} $ となり、
+$F$が実現する関数$f_1$が確かに$A_{TM}$ から $EPS_{TM}$ への写像帰着である。
+したがって、$EPS_{TM}$ が決定可能なら $A_{TM}$ も決定可能となり、矛盾する。  
+よって、$EPS_{TM}$ は決定不能である。
 
 \end{frame}
