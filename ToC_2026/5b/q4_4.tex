@@ -1,6 +1,182 @@
 \begin{frame}[fragile]
-\frametitle{Q4}
+\frametitle{Q4(4): $J$ と $\overline{J}$ のTuring認識不可能性 (1/4) 方針}
+\begin{block}{対象となる言語 $J$}
+  $J = \{0x \mid x \in A_{\mathrm{TM}}\} \cup \{1y \mid y \in \overline{A_{\mathrm{TM}}}\}$ \\
+  （先頭が $0$ なら $A_{\mathrm{TM}}$，先頭が $1$ なら $\overline{A_{\mathrm{TM}}}$ の要素が続く文字列）
+\end{block}
 
-% コンテンツをここに記入
+\begin{itemize}
+  \item \textbf{目標:} $J$ と $\overline{J}$ がどちらもTuring認識不可能であることを示す．
+  \item \textbf{証明のアプローチ:} 
+  \begin{itemize}
+      \item $J$ の証明：認識不可能であることが既知の $\overline{A_{\mathrm{TM}}}$ を，$J$ に帰着させる（\alert{$\overline{A_{\mathrm{TM}}} \le_m J$}）．
+      \item $\overline{J}$ の証明：写像帰着の定理 \alert{$A \le_m B \iff \overline{A} \le_m \overline{B}$} を活用して，証明する．
+  \end{itemize}
+\end{itemize}
+\end{frame}
 
+\begin{frame}[fragile]
+\frametitle{Q4(4): $J$ と $\overline{J}$ のTuring認識不可能性 (2/4) $J$}
+
+\textbf{【$J$ が認識不可能であることの証明】}
+
+計算可能な関数 $f$ を $f(x) = 1x$ と定義する．
+$f$ が $\overline{A_{\mathrm{TM}}}$ から $J$ への写像帰着であることを確認する．
+
+\begin{itemize}
+  \item $x \in \overline{A_{\mathrm{TM}}}$ の場合：\\
+  先頭が $1$ で続く文字列が $\overline{A_{\mathrm{TM}}}$ に属するため，$1x \in J$ となる．
+  \item $x \notin \overline{A_{\mathrm{TM}}}$ の場合：\\
+  先頭が $1$ だが，続く文字列が $\overline{A_{\mathrm{TM}}}$ に属さないため，$1x \notin J$ となる．
+\end{itemize}
+
+\vspace{1em}
+\begin{block}{結論}
+  $x \in \overline{A_{\mathrm{TM}}} \iff f(x) \in J$ が成り立つため，$\overline{A_{\mathrm{TM}}} \le_m J$ である．\\
+  $\overline{A_{\mathrm{TM}}}$ は認識不可能であるため，\alert{$J$ もTuring認識不可能}である．
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Q4(4): $J$ と $\overline{J}$ のTuring認識不可能性 (3/4) $\overline{J}$}
+
+\textbf{$\overline{J}$ が認識不可能であることの証明（定理の活用）}
+
+今度は計算可能な関数 $h(x) = 0x$ を考える．
+
+\begin{itemize}
+  \item $J$ の定義（先頭が $0$ なら $A_{\mathrm{TM}}$ に属する）より，\\
+  $x \in A_{\mathrm{TM}} \iff 0x \in J$（すなわち $h(x) \in J$）が成り立つ．
+  \item したがって，$h$ は $A_{\mathrm{TM}}$ から $J$ への写像帰着であり，\alert{$A_{\mathrm{TM}} \le_m J$} となる．
+\end{itemize}
+
+\vspace{1em}
+\begin{block}{補集合の定理による結論}
+  写像帰着の性質より，$A_{\mathrm{TM}} \le_m J \iff \alert{\overline{A_{\mathrm{TM}}} \le_m \overline{J}}$ が成り立つ．\\
+  $\overline{A_{\mathrm{TM}}}$ は認識不可能であるため，帰着先である \alert{$\overline{J}$ もTuring認識不可能}である．
+\end{block}
+\end{frame}
+
+\begin{frame}[allowframebreaks, fragile]
+\frametitle{Q4(4): 解答例（定理を活用した証明）}
+
+\textbf{証明:} $J$ および $\overline{J}$ がともにTuring認識可能でないことを示す．
+
+\vspace{0.5em}
+\textbf{(1) $J$ がTuring認識不可能であることの証明} \\
+計算可能な関数 $f$ を $f(x) = 1x$ と定義する．
+$f$ が $\overline{A_{\mathrm{TM}}}$ から $J$ への写像帰着であることを確認する．
+\begin{itemize}
+    \item $x \in \overline{A_{\mathrm{TM}}}$ ならば，先頭が $1$ で続く文字列が $\overline{A_{\mathrm{TM}}}$ に属するため，$1x \in J$ となる．
+    \item $x \notin \overline{A_{\mathrm{TM}}}$ ならば，先頭が $1$ だが続く文字列が $\overline{A_{\mathrm{TM}}}$ に属さないため，$1x \notin J$ となる．
+\end{itemize}
+よって $x \in \overline{A_{\mathrm{TM}}} \iff f(x) \in J$ が成り立ち，$\overline{A_{\mathrm{TM}}} \le_m J$ である．$\overline{A_{\mathrm{TM}}}$ は認識不可能であるため，$J$ もTuring認識不可能である．
+
+\framebreak
+
+\textbf{(2) $\overline{J}$ がTuring認識不可能であることの証明} \\
+計算可能な関数 $h$ を $h(x) = 0x$ と定義する．
+$J$ の定義より，先頭が $0$ である文字列について $x \in A_{\mathrm{TM}} \iff 0x \in J$（すなわち $h(x) \in J$）が成り立つ．
+したがって，$h$ は $A_{\mathrm{TM}}$ から $J$ への写像帰着であり，$A_{\mathrm{TM}} \le_m J$ である．
+
+ここで写像帰着の定理より，$A_{\mathrm{TM}} \le_m J \iff \overline{A_{\mathrm{TM}}} \le_m \overline{J}$ が成り立つ．
+$\overline{A_{\mathrm{TM}}}$ は認識不可能であるため，帰着先の $\overline{J}$ もTuring認識不可能である．
+
+\vspace{1em}
+以上より，$J$ と $\overline{J}$ のいずれもTuring認識可能ではない．\qed
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Q4(4): $\overline{J}$ のTuring認識不可能性 (別解 1/3) 方針}
+\begin{block}{対象となる言語 $\overline{J}$}
+  $J$ は「先頭が $0$ ならば残りが $A_{\mathrm{TM}}$ に属する」等の条件を持つ．\\
+  $\overline{J}$ は，その\textbf{補集合（条件を満たさない文字列の集合）}である．
+\end{block}
+
+\begin{itemize}
+  \item \textbf{目標:} $\overline{J}$ がTuring認識不可能であることを示す．
+  \item \textbf{証明のアプローチ:}
+  \begin{itemize}
+      \item 定理（$A \le_m B \iff \overline{A} \le_m \overline{B}$）には頼らず，写像帰着の定義通りに \alert{$\overline{A_{\mathrm{TM}}} \le_m \overline{J}$} を直接証明する．
+      \item 帰着関数として，「先頭に $0$ をつける」という単純な操作を利用する．
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Q4(4): $\overline{J}$ のTuring認識不可能性 (別解 2/3) 帰着関数の構築}
+$\overline{A_{\mathrm{TM}}}$ から $\overline{J}$ への写像帰着関数 $g$ を実現するTM $G$ を構築する．
+
+\begin{block}{$G$ のアルゴリズム}
+  入力 $x$ に対して：
+  \begin{enumerate}
+      \item $x$ の先頭に $0$ を付加し，文字列 $y = 0x$ を構築する．
+      \item $y$ を出力する．
+  \end{enumerate}
+\end{block}
+
+\vspace{1em}
+\begin{itemize}
+  \item このTM $G$ は，入力 $x$ に対して単に文字を連結するだけであるため，常に停止し，計算可能である．
+  \item したがって，実現される関数は $g(x) = 0x$ となる．
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Q4(4): $\overline{J}$ のTuring認識不可能性 (別解 3/3) 挙動の分析と結論}
+関数 $g(x) = 0x$ が，実際に $\overline{A_{\mathrm{TM}}} \le_m \overline{J}$ の条件を満たすか確認する．
+
+\begin{itemize}
+  \item \textbf{ケース1: $x \in \overline{A_{\mathrm{TM}}}$ の場合}
+  \begin{itemize}
+      \item $x \notin A_{\mathrm{TM}}$ であるため，$0x$ は「先頭が $0$ で残りが $A_{\mathrm{TM}}$」という \textbf{$J$ の条件を満たさない}．
+      \item よって $0x \notin J$，すなわち \alert{$g(x) \in \overline{J}$} である．
+  \end{itemize}
+  \vspace{0.5em}
+  \item \textbf{ケース2: $x \notin \overline{A_{\mathrm{TM}}}$ の場合}（すなわち $x \in A_{\mathrm{TM}}$）
+  \begin{itemize}
+      \item $0x$ は「先頭が $0$ で残りが $A_{\mathrm{TM}}$」という \textbf{$J$ の条件を完全に満たす}．
+      \item よって $0x \in J$，すなわち \textbf{$g(x) \notin \overline{J}$} である．
+  \end{itemize}
+\end{itemize}
+
+\vspace{0.5em}
+\begin{block}{結論}
+  以上より，$x \in \overline{A_{\mathrm{TM}}} \iff g(x) \in \overline{J}$ が成立する．\\
+  ゆえに $\overline{A_{\mathrm{TM}}} \le_m \overline{J}$ であり，$\overline{A_{\mathrm{TM}}}$ が認識不可能であるため，帰着先である \alert{$\overline{J}$ もTuring認識不可能}である．\qed
+\end{block}
+\end{frame}
+
+\begin{frame}[allowframebreaks, fragile]
+\frametitle{Q4(4): 解答例（定義に従った直接証明）}
+
+\textbf{証明:} $J$ および $\overline{J}$ がともにTuring認識可能でないことを示す．
+
+\vspace{0.5em}
+\textbf{(1) $J$ がTuring認識不可能であることの証明} \\
+$\overline{A_{\mathrm{TM}}}$ から $J$ への写像帰着 $f$ を実現するTuring機械 $F$ を次のように構築する．\\
+$F =$ 「入力 $x$ に対して：① $y = 1x$ を構築せよ．② $y$ を出力せよ．」
+
+関数 $f(x) = 1x$ が帰着であることを説明する．
+\begin{itemize}
+    \item $x \in \overline{A_{\mathrm{TM}}}$ ならば，$f(x)$ は先頭が $1$ で残りが $\overline{A_{\mathrm{TM}}}$ に属するため，$J$ の定義を満たす（$f(x) \in J$）．
+    \item $x \notin \overline{A_{\mathrm{TM}}}$ ならば，$f(x)$ は残りの文字列が $\overline{A_{\mathrm{TM}}}$ に属さないため，$J$ の定義を満たさない（$f(x) \notin J$）．
+\end{itemize}
+以上より $x \in \overline{A_{\mathrm{TM}}} \iff f(x) \in J$ となり，$\overline{A_{\mathrm{TM}}} \le_m J$ であるため，$J$ はTuring認識不可能である．
+
+\framebreak
+
+\textbf{(2) $\overline{J}$ がTuring認識不可能であることの証明} \\
+$\overline{A_{\mathrm{TM}}}$ から $\overline{J}$ への写像帰着 $g$ を実現するTuring機械 $G$ を次のように構築する．\\
+$G =$ 「入力 $x$ に対して：① $y = 0x$ を構築せよ．② $y$ を出力せよ．」
+
+関数 $g(x) = 0x$ が帰着であることを説明する．
+\begin{itemize}
+    \item $x \in \overline{A_{\mathrm{TM}}}$ ならば，$x \notin A_{\mathrm{TM}}$ であり，$y = 0x$ は $J$ の条件を満たさない．よって $0x \notin J$（すなわち $g(x) \in \overline{J}$）である．
+    \item $x \notin \overline{A_{\mathrm{TM}}}$ ならば（$x \in A_{\mathrm{TM}}$），$y = 0x$ は $J$ の条件を満たすため $0x \in J$ となる．すなわち $g(x) \notin \overline{J}$ である．
+\end{itemize}
+以上より $x \in \overline{A_{\mathrm{TM}}} \iff g(x) \in \overline{J}$ が成り立つため，$\overline{A_{\mathrm{TM}}} \le_m \overline{J}$ である．$\overline{A_{\mathrm{TM}}}$ は認識不可能であるため，$\overline{J}$ も認識不可能である．
+
+\vspace{1em}
+したがって，$J$ と $\overline{J}$ のいずれもTuring認識可能ではない．\qed
 \end{frame}

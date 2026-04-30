@@ -1,18 +1,24 @@
 # LaTeX 中間ファイル
 *.aux
 *.bbl
+*.bcf
 *.blg
-*.log
-*.out
-*.toc
-*.synctex.gz
+*.dvi
 *.fdb_latexmk
 *.fls
+*.log
+*.lof
+*.lot
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
 *.nav
-*.pdf
+*.snm
+*.vrb
 
 # PDF ファイル（必要に応じて）
-# *submit.pdf
+*.pdf
 
 # OS 固有ファイル
 .DS_Store
