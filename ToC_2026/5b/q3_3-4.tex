@@ -134,8 +134,8 @@ $OL$ から $\overline{E_{\mathrm{TM}}}$ への写像帰着関数を計算する
   1. 以下のTM $M'$ を構築する．\\
   \quad $M'=$ 『入力 $x$ に対して：
   \begin{itemize}
-      \item $A$ を $x$ でシミュレートし、拒否するならば\textbf{拒否}する．
-      \item $M$ を $x$ でシミュレートし、$M$ が受理したならば\textbf{受理}する．』
+      \item $A$ を $x$ でシミュレートし、受理しないならば\textbf{拒否}する．
+      \item $M$ を $x$ でシミュレートし、受理したならば\textbf{受理}する．』
   \end{itemize}
   2. $\langle M' \rangle$ を出力する．」
 \end{block}
@@ -159,7 +159,7 @@ $OL$ から $\overline{E_{\mathrm{TM}}}$ への写像帰着関数を計算する
 
 \vspace{0.5em}
 したがって、$\langle M, A \rangle \in OL \iff \langle M' \rangle \in \overline{E_{\mathrm{TM}}}$ が成立する．\\
-$OL \le_m \overline{E_{\mathrm{TM}}}$ が示されたため、$\overline{E_{\mathrm{TM}}}$ の性質より $OL$ もTuring認識可能である．\qed
+$OL \le_m \overline{E_{\mathrm{TM}}}$ が示されたため、$\overline{E_{\mathrm{TM}}}$がTuring認識可能であるため、定理5.28より$OL$ もTuring認識可能である．\qed
 \end{frame}
 
 \begin{frame}[allowframebreaks, fragile]
