@@ -1,1 +1,135 @@
+\begin{frame}[fragile]
+\frametitle{Q4 (2) 問題}
 
+\begin{alertblock}{問題}
+
+$A \text{がTuring認識可能} \Leftrightarrow A \le_{m} A_{TM}$ であることを示せ
+
+\end{alertblock}
+
+この問題に対して、
+
+\begin{enumerate}
+  \item[(i)] $A \text{がTuring認識可能} \Rightarrow A \le_{m} A_{TM}$
+  \item[(ii)] $A \le_{m} A_{TM} \Rightarrow A \text{はTuring認識可能}$
+\end{enumerate}
+
+の両方を示すことによって、$A$ がTuring認識可能であることと $A \le_{m} A_{TM}$ が同値であることを証明する。
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+\frametitle{Q4 (2) \hspace{3mm} (i) $A \text{がTuring認識可能} \Rightarrow A \le_{m} A_{TM}$ の証明}
+
+\textbf{証明:}
+
+$A$ がTuring認識可能ならば $A \le_{m} A_{TM}$であることを示す。
+
+$A$ がTuring認識可能であるとき、$A$ を認識するチューリング機械 $R_{A2}$ が存在する。ここで、$A$ から $A_{TM}$ への写像帰着 $f$ を実現するチューリング機械 $F$ を以下のように構成する。
+
+$F =$ 「入力 $x$ に対して:
+
+\begin{enumerate}
+    \item 以下の動作をする TM $M_x$ の設計図を構築する。
+
+     $M_x$ = 「入力 $y$ に対して：
+
+    \begin{enumerate}
+        \item[1.] $x$ を入力として $R_{A2}$ を実行する( $y$ を無視する)。
+        \item[2.] $R_{A2}$ が受理した場合は受理し、受理しない場合は拒否する。」
+    \end{enumerate}
+
+    \item 構築した設計図 $\langle M_x, x \rangle$ を出力する。」
+
+\end{enumerate}
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+\frametitle{Q4 (2) \hspace{3mm} (i) $A \text{がTuring認識可能} \Rightarrow A \le_{m} A_{TM}$ の証明の続き}
+
+このTM $F$ は、与えられた $x$ TMの記述 $\langle M_x \rangle$ を機械的に構成してだけであり、有限時間で必ず終了するため計算可能である。次に、任意の $x$ について「$x \in A \Leftrightarrow f(x) \in A_{TM}$」が成り立つことを示す。
+
+\begin{enumerate}
+  \item[・] $x \in A$ の場合： \\
+$R_{A2}$ は $x$ を受理するため、$M_x$ は任意の入力 $y$ を受理する。このとき、 $\langle M_x, x \rangle \in A_{TM}$ であるため、$f(x) \in A_{TM}$ が成り立つ。
+\end{enumerate}
+
+\begin{enumerate}
+  \item[・] $x \notin A$ の場合： \\
+$R_{A2}$ は $x$ を受理しないため、$M_x$ はどの入力も受理しない。このとき、 $\langle M_x, x \rangle \notin A_{TM}$ であるため、$f(x) \notin A_{TM}$ が成り立つ。
+\end{enumerate}
+
+以上のことから、$A$ を $A_{TM}$ へ写像帰着可能であることが示された（$A \le_{m} A_{TM}$）。したがって、$A$ がTuring認識可能ならば $A \le_{m} A_{TM}$である。
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+\frametitle{Q4 (2) \hspace{3mm} (ii) $A \le_{m} A_{TM} \Rightarrow A \text{はTuring認識可能}$ の証明}
+
+\textbf{証明:}
+
+$A \le_{m} A_{TM}$ ならば $A$ はTuring認識可能であることを示す。
+
+定理 5.28 (もし$A \le_{m} B$ かつ $B$ がTuring認識可能なら $A$ もTuring認識可能である)より、$A_{TM}$ はTuring認識可能であるため$A \le_{m} A_{TM}$ であるとき、定理 5.28 より $A \le_{m} A_{TM} \Rightarrow A \text{はTuring認識可能}$ である。
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+\frametitle{Q4 (2) \hspace{3mm} (ii) $A \le_{m} A_{TM} \Rightarrow A \text{はTuring認識可能}$ の証明(別解)}
+
+\textbf{証明:}
+
+$A \le_{m} A_{TM}$ ならば $A$ はTuring認識可能であることを示す。
+
+$A \le_{m} A_{TM}$ であるとき、$A$ から $A_{TM}$ への写像帰着する計算可能な関数 $f$ が存在し、$x \in A \Leftrightarrow f(x) \in A_{TM}$ が成り立つ。ここで、$A_{TM}$ を認識するチューリング機械 $R_{ATM}$ が存在するため、$A$ を認識するチューリング機械 $R_{A1}$ を以下のように構成する。
+
+$R_{A1} =$ 「入力 $x$ に対して：
+
+\begin{enumerate}
+    \item $f(x)$ を計算する。
+    \item $f(x)$ を入力として $R_{ATM}$ を実行し、受理した場合は受理する。」
+\end{enumerate}
+
+このとき、$f$ は計算可能であるため、ステップ1は有限時間で終了する。また、ステップ2は $R_{ATM}$ は $A_{TM}$ の認識機であるため、$f(x) \in A_{TM}$ であれば必ず有限時間で終了する。
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+\frametitle{Q4 (2) \hspace{3mm} (ii) $A \le_{m} A_{TM} \Rightarrow A \text{はTuring認識可能}$ の証明(別解)の続き}
+
+次に、同値条件「$x \in A \Leftrightarrow f(x) \in A_{TM}$」を用いて、$R_{A1}$ が $A$ を認識することを示す。
+
+\begin{enumerate}
+  \item[・] $x \in A$ の場合： \\
+  $f(x) \in A_{TM}$ となるため、$R_{A1}$ は受理する。
+\end{enumerate}
+
+\begin{enumerate}
+  \item[・] $x \notin A$ の場合： \\
+  $f(x) \notin A_{TM}$ となるため、$R_{A1}$ は拒否する。
+\end{enumerate}
+
+以上のことから、$R_{A1}$ は $A$ の認識機であり、$A$ はTuring認識可能である。
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+\frametitle{Q4 (2) 証明のまとめ}
+
+(i) と (ii) より、$A$ がTuring認識可能であることと $A \le_{m} A_{TM}$ であることは同値である。
+\hfill \qed
+
+\end{frame}

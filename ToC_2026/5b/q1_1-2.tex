@@ -1,6 +1,128 @@
 \begin{frame}[fragile]
-\frametitle{Q1 (1)-(2)}
+\frametitle{Q1 (1)}
 
-% コンテンツをここに記入
+\begin{alertblock}{問題}
+
+$EPS_{TM} = \{\langle M \rangle \mid L(M) = \{\varepsilon\}\}$ が決定可能か
+
+\end{alertblock}
+
+この問題に対して、$A_{TM}$ から $EPS_{TM}$ の写像帰着によって、$EPS_{TM}$ が決定不能であることを証明する。
 
 \end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Q1 (1)}
+
+\textbf{証明:}
+
+$EPS_{TM}$の決定器が存在すると仮定し、$A_{TM}$ を $EPS_{TM}$ に写像帰着させることを考える。
+$A_{TM}$ から $EPS_{TM}$ への写像帰着を $f_1$ を実現するTuring機械 $F_1$ を構成する。
+
+$F_1$（入力 $\langle M, w  \rangle$）:
+
+\begin{enumerate}
+    \item TM $M'$ を構成せよ。
+
+     $M'$（入力 $x$）:
+
+    \begin{enumerate}
+        \item[1.] もし $x  \neq \varepsilon$ ならば、拒否せよ。
+        \item[2.] もし $x = \varepsilon$ ならば、$M$ を $w$ 上で走査せよ。
+        \item[3.] $M$ が $w$ を受理したなら、受理せよ。
+    \end{enumerate}
+
+    \item $\langle M' \rangle$ を出力せよ。
+
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Q1 (1)}
+
+このとき、以下が成り立つ：
+
+
+$M \text{ が } w \text{ を受理する } \Longrightarrow  L(M') = \{\varepsilon\}$ なので $\langle M' \rangle \in EPS_{TM}$
+
+
+$M \text{ が } w \text{ を受理しない } \Longrightarrow  L(M') = \emptyset$ なので $\langle M' \rangle \notin EPS_{TM}$
+
+
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Q1 (1)}
+
+以上により、
+$F_1$が実現する関数$f_1$が確かに$A_{TM}$ から $EPS_{TM}$ への計算可能関数であり、$A_{TM}$は$EPS_{TM}$に写像帰着可能である。
+
+ここで、$EPS_{TM}$ が決定可能なら $A_{TM}$ も決定可能となり、$A_{TM}$が決定不能であることと矛盾する。  
+
+よって、$EPS_{TM}$の決定器が存在するという仮定が誤りであり、$EPS_{TM}$ は決定不能である。
+
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Q1 (2)}
+
+\begin{alertblock}{問題}
+
+$ZO = \{\langle M \rangle \mid M \text{ は } L(M) = 0^*1^* \text{ を受理するチューリング機械 } \}$
+
+\end{alertblock}
+この問題に対して、$A_{TM}$ から $ZO$ の写像帰着によって、$ZO$ が決定不能であることを証明する。
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Q1 (2)}
+
+\textbf{証明:}
+$ZO$の決定器が存在すると仮定し、$A_{TM}$ を $ZO$ に写像帰着させることを考える。
+$A_{TM}$ から $ZO$ への写像帰着を $f_2$ を実現するTuring機械 $F_2$ を構成する。
+
+$F_2$（入力 $\langle M, w  \rangle$）:
+\begin{enumerate}
+    \item TM $M'_2$ を構成せよ。
+
+     $M'_2$（入力 $x$）:
+
+    \begin{enumerate}
+        \item[1.] もし $x  \neq 0^*1^*$ ならば、拒否せよ。
+        \item[2.] もし $x = 0^*1^*$ ならば、$M$ を $w$ 上で走査せよ。
+        \item[3.] $M$ が $w$ を受理したなら、受理せよ。
+    \end{enumerate}
+
+    \item $\langle M'_2 \rangle$ を出力せよ.
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Q1 (2)}
+
+このとき、以下が成り立つ：
+
+$M \text{ が } w \text{ を受理する } \Longrightarrow  L(M'_2) = 0^*1^*$ なので $\langle M'_2 \rangle \in ZO$
+
+$M \text{ が } w \text{ を受理しない } \Longrightarrow  L(M'_2) = \emptyset$ なので $\langle M'_2 \rangle \notin ZO$
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Q1 (2)}
+
+以上により、$F_2$が実現する関数$f_2$が確かに$A_{TM}$ から $ZO$ への計算可能関数であり、$A_{TM}$は$ZO$に写像帰着可能である。
+
+ここで、$ZO$ が決定可能なら $A_{TM}$ も決定可能となり、$A_{TM}$が決定不能であることと矛盾する。
+
+よって、$ZO$の決定器が存在するという仮定が誤りであり、$ZO$ は決定不能である。
+
+\end{frame}
+
+
+

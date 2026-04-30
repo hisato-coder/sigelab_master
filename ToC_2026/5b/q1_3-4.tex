@@ -1,6 +1,158 @@
 \begin{frame}[fragile]
-\frametitle{Q1 (3)-(4)}
+\frametitle{Q1 (3) 問題}
 
-% コンテンツをここに記入
+\begin{alertblock}{問題}
+
+$T = \{\langle M \rangle \mid M \text{が} w \text{を受理するなら、必ずその反転文字列} w^R \text{も受理する}\}$ \\
+が決定可能か
+
+\end{alertblock}
+
+この問題に対して、$A_{TM}$ から $T$ の写像帰着によって、$T$ が決定不能であることを証明する。
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+\frametitle{Q1 (3) 解答}
+
+\textbf{証明:}
+
+$T$ が決定可能であると仮定し、それを決定する決定機 $R$ が存在するとする。ここで、$A_{TM}$ から $T$ への写像帰着 $f$ を実現するチューリング機械 $F$ 以下のように構成する。
+
+$F =$ 「入力 $\langle M, w \rangle$ に対して:
+
+\begin{enumerate}
+    \item $<M, w>$ から以下の動作をする TM $M'$ の設計図を構築する。
+
+     $M' =$ 「入力 $x$に対して:
+
+    \begin{enumerate}
+        \item[1.] $x = w$ なら受理する。
+        \item[2.] $x = w^R$ なら $w$ を入力として $M$ を実行し、$M$ が受理した場合は受理する。
+        \item[3.] その他の入力($x \neq w$ かつ $x \neq w^R$)は拒否する。」
+    \end{enumerate}
+
+    \item 構築した設計図 $\langle M' \rangle$ を出力する。」
+
+\end{enumerate}
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+\frametitle{Q1 (3) 解答の続き}
+
+このTM $F$ は、与えられたマシンの記述を書き換えるだけであり、有限時間で必ず終了するため計算可能である。
+
+次に、この変換において「$\langle M, w \rangle \in A_{TM} \Leftrightarrow f(\langle M, w \rangle) \in T$」が成り立つことを示す。
+
+\begin{enumerate}
+  \item[・] $\langle M, w \rangle \in A_{TM}$ の場合( $M$ が $w$ を受理する場合 )： \\
+$M'$ は $w$ を受理し $w^R$ も受理するため、 $L(M') = L(w) \cup L(w^R)$ である。このとき、出力された $f(\langle M, w \rangle) = \langle M' \rangle$ は集合 $T$ の定義を満たすため、$f(\langle M, w \rangle) \in T$ が成り立つ。
+\end{enumerate}
+
+\begin{enumerate}
+  \item[・] $\langle M, w \rangle \notin A_{TM}$ の場合( $M$ が $w$ を受理しない場合 )： \\
+$M'$ は $w$ を受理するが $w^R$ を受理しない(拒否または無限ループする)ため、 $L(M') = L(w)$ である。このとき、$f(\langle M, w \rangle) = \langle M' \rangle$ は集合 $T$ の定義を満たさないため、$f(\langle M, w \rangle) \notin T$ となる。
+\end{enumerate}
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+\frametitle{Q1 (3) 解答の続き}
+
+以上のことから、$A_{TM}$ を $T$ へ写像帰着可能であることが示された（$A_{TM} \le_{m} T$）。
+
+もし $T$ を決定できる決定機 $R$ が存在すれば、この帰着と組み合わせることで $A_{TM}$ を決定できることになるが、これは $A_{TM}$ が決定不能であるという事実に矛盾する。
+
+したがって、仮定は誤りであり $T$ は決定不能である。
+\hfill \qed
+
+\end{frame}
+
+
+
+
+
+\begin{frame}[fragile]
+\frametitle{Q1 (4) 問題}
+
+\begin{alertblock}{問題}
+
+$OL = \{\langle M, A \rangle \mid M \text{はTM、} A \text{はDFAであり、} L(M) \text{と} L(A) \text{の共通部分が空集合ではない}\}$ \\
+が決定可能か
+
+\end{alertblock}
+
+この問題に対して、$A_{TM}$ から $OL$ の写像帰着によって、$OL$ が決定不能であることを証明する.
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+\frametitle{Q1 (4) 解答}
+
+\textbf{証明:}
+
+$OL$ が決定可能であると仮定し、それを決定する決定機 $R$ が存在するとする。ここで、$A_{TM}$ から $OL$ への写像帰着 $f$ を実現するチューリング機械 $F$ 以下のように構成する。
+
+$F =$ 「入力 $\langle M, w \rangle$ に対して:
+
+\begin{enumerate}
+    \item 空でない正則言語を受理する DFA $A_0$ を $L(A_0) = \{0\}$ となるように構築する。
+    \item $\langle M, w \rangle$ から以下の動作をする TM $M'$ の設計図を構築する。
+
+     $M' =$ 「入力 $x$に対して:
+
+    \begin{enumerate}
+        \item[1.] $w$ を入力として $M$ を実行する。
+        \item[2.] $M$ が受理した場合は $A_0$ を $x$ 上で実行し、 $A_0$ が受理した場合は受理する。
+        \item[3.] $M$ が受理しなかった場合(拒否または無限ループ)は拒否する。」
+    \end{enumerate}
+
+    \item 構築した設計図 $\langle M', A_0 \rangle$ を出力する。」
+
+\end{enumerate}
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+\frametitle{Q1 (4) 解答の続き}
+
+このTM $F$ は、与えられたマシンの記述を書き換えるだけであり、有限時間で必ず終了するため計算可能である。
+
+次に、この変換において「$\langle M, w \rangle \in A_{TM} \Leftrightarrow f(\langle M, w \rangle) \in OL$」が成り立つことを示す。
+
+\begin{enumerate}
+  \item[・] $\langle M, w \rangle \in A_{TM}$ の場合( $M$ が $w$ を受理する場合 )： \\
+$M'$ は $w$ を受理し、$A_0$ は $0$ を受理するため、 $L(M') \cap L(A_0) = \{0\}$ である。このとき、出力された $f(\langle M, w \rangle) = \langle M', A_0 \rangle$ は集合 $OL$ の定義を満たすため、$f(\langle M, w \rangle) \in OL$ が成り立つ。
+\end{enumerate}
+
+\begin{enumerate}
+  \item[・] $\langle M, w \rangle \notin A_{TM}$ の場合( $M$ が $w$ を受理しない場合 )： \\
+$M'$ は $w$ を受理しない(拒否または無限ループする)ため、 $L(M') \cap L(A_0) = \emptyset$ である。このとき、$f(\langle M, w \rangle) = \langle M', A_0 \rangle$ は集合 $OL$ の定義を満たさないため、$f(\langle M, w \rangle) \notin OL$ となる。
+\end{enumerate}
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+\frametitle{Q1 (4) 解答の続き}
+
+以上のことから、$A_{TM}$ を $OL$ へ写像帰着可能であることが示された（$A_{TM} \le_{m} OL$）。
+
+もし $OL$ を決定できる決定機 $R$ が存在すれば、この帰着と組み合わせることで $A_{TM}$ を決定できることになるが、これは $A_{TM}$ が決定不能であるという事実に矛盾する。
+
+したがって、仮定は誤りであり $OL$ は決定不能である。
+\hfill \qed
 
 \end{frame}
