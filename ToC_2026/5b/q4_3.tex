@@ -1,13 +1,87 @@
 \begin{frame}[fragile]
-\frametitle{Q4-1 解答の続き}
+\frametitle{Q4(3)}
 
-\begin{itemize}
-	\item 今度は $A_{\mathrm{TM}} \le_m \overline{REGULAR_{\mathrm{TM}}}$ を示す。
-	\item 同じ入力 $\langle M,w\rangle$ から TM $N'$ を作る。
-	\item $N'$ も $x$ が $0^n1^n$ の形のときだけ $M$ を $w$ 上でシミュレートする。
-	\item $M$ が $w$ を受理したら受理し，そうでなければループする。
-	\item 受理するとき $L(N')=\{0^n1^n\mid n\ge 0\}$，受理しないとき $L(N')=\emptyset$。
-	\item よって $\overline{REGULAR_{\mathrm{TM}}}$ も Turing 認識不可能。
-\end{itemize}
+\begin{alertblock}{問題}
+
+言語 $A$ が決定可能であることと、$A \leq_m 0^*1^*$ であることは同値であることを示せ。
+
+\end{alertblock}
+
 
 \end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Q4(3)}
+
+\begin{alertblock}{十分条件}
+
+言語 $A$ が決定可能である $\Longrightarrow$  $A \leq_m 0^*1^*$
+
+\end{alertblock}
+
+まず、十分性の証明を示す。
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Q4(3)}
+
+\textbf{証明:}
+$A$ が決定可能であると仮定し、$A$から$A \leq_m 0^*1^*$への写像帰着$f$を実現するチューリング機械$F$を構成する。
+$A$は決定可能なので、任意の入力$w$に対して $A$ を決定するチューリング機械 $M_A$ が存在する。
+$F$（入力 $w$）:
+\begin{enumerate}
+	\item $w$ を入力として $A$ を決定するチューリング機械 $M_A$ を実行する。
+	\item $M_A$ が受理した場合、文字列 $01$ を出力する。
+	\item $M_A$ が拒絶した場合、文字列 $10$ を出力する。
+\end{enumerate}
+
+ここで、$M_A$は必ず停止するため、$f$は計算可能関数である。また、$w \in A$ のとき $f(w) = 01 \in 0^*1^*$ であり、$w \notin A$ のとき $f(w) = 10 \notin 0^*1^*$ であるため、$A \leq_m 0^*1^*$ が成立する。
+
+
+
+
+
+
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \begin{frame}[fragile]
+% \frametitle{Q4-1 解答の続き}
+
+% \begin{itemize}
+% 	\item 今度は $A_{\mathrm{TM}} \le_m \overline{REGULAR_{\mathrm{TM}}}$ を示す。
+% 	\item 同じ入力 $\langle M,w\rangle$ から TM $N'$ を作る。
+% 	\item $N'$ も $x$ が $0^n1^n$ の形のときだけ $M$ を $w$ 上でシミュレートする。
+% 	\item $M$ が $w$ を受理したら受理し，そうでなければループする。
+% 	\item 受理するとき $L(N')=\{0^n1^n\mid n\ge 0\}$，受理しないとき $L(N')=\emptyset$。
+% 	\item よって $\overline{REGULAR_{\mathrm{TM}}}$ も Turing 認識不可能。
+% \end{itemize}
+
+% \end{frame}
+
+
