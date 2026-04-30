@@ -1,6 +1,41 @@
 \begin{frame}[fragile]
-\frametitle{Q4}
+\frametitle{Q4(5)}
 
 % コンテンツをここに記入
+\begin{alertblock}{問い}
+    $B \le_m \overline{B}$ を満たす決定不能な言語$B$の例を挙げなさい。
+\end{alertblock}
+ここではQ4(4)の$J = \{0x \mid x \in A_{\mathrm{TM}}\} \cup \{1y \mid y \in \overline{A_{\mathrm{TM}}}\}$
+を例として挙げる。
+\end{frame}
 
+\begin{frame}
+    \textbf{(1) $J \le_m \overline{J}$ であることの証明}
+
+$J$ から $\overline{J}$ への写像帰着を構築するために、計算可能な関数 $f$ を以下のように定義する：
+
+\begin{block}{関数 $f$ の定義}
+  入力 $x$ に対して：\\
+
+  1. $x$ の先頭の文字を確認する．
+
+  2. 先頭が $0$ であれば、$f(x) = 1x$ と定義する．
+  
+  3. 先頭が $1$ であれば、$f(x) = 0x$ と定義する．
+\end{block}
+この関数 $f$ は、$J$ の要素を $\overline{J}$ の要素に、$\overline{J}$ の要素を $J$ の要素に写像するため、$J \le_m \overline{J}$ が成り立つ。
+\end{frame}
+
+\begin{frame}
+\frametitle{Q4(5)} 
+
+\textbf{(2) $J$ が決定不能であることの証明}
+
+$A_{\mathrm{TM}}$ はTuring認識不可能であるため、$A_{\mathrm{TM}}$ から $J$ への写像帰着を構築することで、$J$ が決定不能であることを示す。
+計算可能な関数 $g$ を $g(x) = 0x$ と定義する。
+この関数 $g$ は、$A_{\mathrm{TM}}$ の要素を $J$ の要素に写像するため、$A_{\mathrm{TM}} \le_m J$ が成り立つ。
+$A_{\mathrm{TM}}$ は決定不能であるため、$J$も決定不能である。
+
+\vspace{1em}
+以上より，$J$ は $B \le_m \overline{B}$ を満たす決定不能な言語$B$の例である。\qed
 \end{frame}
