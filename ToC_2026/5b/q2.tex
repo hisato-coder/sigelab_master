@@ -4,24 +4,11 @@
     $A \le_{\mathrm{m}} B$ であり、かつ $B$ が正規言語であるとする。
     このとき、$A$ は必ず正規言語であると言えるか？
   \end{alertblock}
-  \begin{itemize}
-    \item 直感的には「正規言語に帰着できるなら、元の言語も正規であるべき」と思えるかもしれない。
-    \item しかし、実際にはこの主張は\textbf{成り立たない}。
-  \end{itemize}
+  \begin{block}{答え}
+    $A$ は必ず正規言語であるとは限らない。
+  \end{block}
 \end{frame}
 
-\begin{frame}{理由の説明}
-  \begin{itemize}
-    \item $A \le_{\mathrm{m}} B$ は「$A$ の問題を $B$ の問題に変換できる」という意味であり、\textbf{言語の構造的な性質}を直接保証するものではない。
-    \item $B$ が正規言語であっても、$A$ は非正規言語である可能性がある。
-  \end{itemize}
-
-  \vfill
-
-  \begin{block}{結論}
-    $A \le_{\mathrm{m}} B$ と $B$ が正規言語であることから、$A$ が正規言語であるとは限らない。
-  \end{block} 
-\end{frame}
 
 \begin{frame}{具体例の構成}
   \begin{itemize}
@@ -29,17 +16,26 @@
     \item $A$ を非正規言語とする（例：$A = \{0^n1^n \mid n \ge 0\}$）。
     \item $A$ から $B$ への写像帰着を構築することが可能である。
   \end{itemize}
-
-  \vfill
-
-  \begin{block}{ポイント}
-    写像帰着は「解決可能性の関係」を示すものであり、\textbf{言語の正規性などの構造的な性質}を保証するものではない。
-  \end{block}
 \end{frame}
 
-\begin{frame}{まとめ}
-  \begin{itemize}
-    \item $A \le_{\mathrm{m}} B$ と $B$ が正規言語であることから、$A$ が正規言語であるとは限らない。
-    \item 写像帰着は「解決可能性の関係」を示すものであり、\textbf{言語の構造的な性質}を保証するものではない。
-  \end{itemize} 
+\begin{frame}{写像帰着の構成}
+    $A$ から $B$ への写像帰着を構築するための関数 $f$ を以下のように定義する。
+
+    \begin{exampleblock}{関数 $f$ の定義}
+        入力 $x$ に対して：
+        \begin{enumerate}
+            \item $x$ が $0^n1^n$ の形式であれば、\textbf{01 を出力する}。
+            \item そうでなければ、\textbf{10 を出力する}。
+        \end{enumerate}
+    \end{exampleblock}
+
+    \vfill
+    \begin{itemize}
+        \item この関数は計算可能である。
+        \item $f(x) = 01$ は $B$ に属し、$f(x) = 10$ は $B$ に属さないため、帰着の条件 $x \in A \iff f(x) \in B$ を満たす。
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{結論}
+    以上の構成により、$A$ は $B$ へ写像帰着可能であるが、$A$ は非正規言語であるため、$A$ は必ずしも正規言語であるとは限らないことが示された。
 \end{frame}
