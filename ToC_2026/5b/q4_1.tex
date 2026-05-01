@@ -1,66 +1,76 @@
 \begin{frame}[fragile]
-\frametitle{Q4(1): 問題}
+\frametitle{Q4(1): 問題設定}
 
 \begin{alertblock}{問題}
-$REGULAR_{\text{TM}}$ と $\overline{REGULAR_{\text{TM}}}$ がどちらも Turing 認識不可能であることを示せ。
+$REGULAR_{\text{TM}}$ および $\overline{REGULAR_{\text{TM}}}$ が、どちらもチューリング認識不可能（Turing-unrecognizable）であることを示せ。
 \end{alertblock}
 
-
-\textbf{証明方針:} 定理 5.3 を用いて、以下の2つを示す。
-
-\begin{enumerate}
-  \item $\overline{A_{\text{TM}}} \le_{m} REGULAR_{\text{TM}}$ であること
-  \item $A_{\text{TM}} \le_{m} \overline{REGULAR_{\text{TM}}}$ であること
-\end{enumerate}
-
-\end{frame}
-
-
-\begin{frame}[fragile]
-\frametitle{Q4(1) 第1部: $\overline{REGULAR_{\text{TM}}}$ の認識不可能製}
-
-定理 5.3 より、$A_{\text{TM}} \le_{m} REGULAR_{\text{TM}}$ が成り立つ。
-
-補集合に対する帰着の性質より、これは $\overline{A_{\text{TM}}} \le_{m} \overline{REGULAR_{\text{TM}}}$ と同値である。
-
-$\overline{A_{\text{TM}}}$ は Turing 認識不可能であるため、写像帰着の性質より $\overline{REGULAR_{\text{TM}}}$ も Turing 認識不可能である。
-
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Q4(1) 第2部: $REGULAR_{\text{TM}}$ の認識不可能製}
-
-入力 $\langle M, w \rangle$ から TM $M'$ を以下のように構成する。
-
-$M'$（入力 $x$）:
-\begin{enumerate}
-  \item もし $x$ が $0^n 1^n$ （$n \ge 0$）の形でなければ拒否する。
-  \item $M$ を $w$ に対して実行する。
-  \item $M$ が受理したら $M'$ は受理する。
-\end{enumerate}
-
-このとき：
+\textbf{証明のポイント:}
 \begin{itemize}
-  \item $M$ が $w$ を受理する $\Rightarrow$ $L(M') = \{0^n 1^n \mid n \ge 0\}$ （正規ではない）
-  \item $M$ が $w$ を受理しない $\Rightarrow$ $L(M') = \emptyset$ （正規言語）
+    \item 既知の事実：$\overline{A_{\text{TM}}}$ はチューリング認識不可能である。
+    \item 示すべきこと：
+    \begin{enumerate}
+        \item $\overline{A_{\text{TM}}} \le_{m} REGULAR_{\text{TM}}$ を示す $\Rightarrow REGULAR_{\text{TM}}$ が認識不可能。
+        \item $\overline{A_{\text{TM}}} \le_{m} \overline{REGULAR_{\text{TM}}}$ を示す $\Rightarrow \overline{REGULAR_{\text{TM}}}$ が認識不可能。
+    \end{enumerate}
+    \item 性質：$L_1 \le_m L_2 \iff \overline{L_1} \le_m \overline{L_2}$ を利用する。
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Q4(1) 第1部:  $\overline{REGULAR_{\text{TM}}}$  の認識不可能性}
+
+$A_{\text{TM}} \le_m \overline{REGULAR_{\text{TM}}}$ を示すため、マシン $G$ を構成する。
+$G = $ 「入力 $\langle M, w \rangle$ に対し、以下の TM $M'$ を構成して出力する」
+\begin{block}{$M'$（入力 $x$）}
+    \begin{enumerate}
+        \item $x \neq 0^n 1^n$ ならば \textbf{拒否}する。
+        \item $x = 0^n 1^n$ ならば $M$ を $w$ に対して実行する。
+        \item $M$ が受理すれば $M'$ も \textbf{受理}する。
+    \end{enumerate}
+\end{block}
+
+\textbf{結果の確認:}
+\begin{itemize}
+    \item $M$ が $w$ を受理する $\Rightarrow L(M') = \{0^n 1^n\}$（非正規）$\Rightarrow \langle M' \rangle \in \overline{REGULAR_{\text{TM}}}$
+    \item $M$ が $w$ を受理しない $\Rightarrow L(M') = \emptyset$（正規）$\Rightarrow \langle M' \rangle \notin \overline{REGULAR_{\text{TM}}}$
+\end{itemize}
+よって $A_{\text{TM}} \le_m \overline{REGULAR_{\text{TM}}}$。これより $\overline{A_{\text{TM}}} \le_m REGULAR_{\text{TM}}$ となり、$REGULAR_{\text{TM}}$ は認識不可能。
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Q4(1) 第2部: $REGULAR_{\text{TM}}$ の認識不可能性}
+
+$A_{\text{TM}} \le_m REGULAR_{\text{TM}}$ を示すため、マシン $F$ を構成する。
+$F = $ 「入力 $\langle M, w \rangle$ に対し、以下の TM $M_2$ を構成して出力する」
+\begin{block}{$M_2$（入力 $x$）}
+    \begin{enumerate}
+        \item $x = 0^n 1^n$ ならば \textbf{受理}する。
+        \item $x \neq 0^n 1^n$ ならば $M$ を $w$ に対して実行する。
+        \item $M$ が受理すれば $M_2$ も \textbf{受理}する。
+    \end{enumerate}
+\end{block}
+
+\textbf{結果の確認:}
+\begin{itemize}
+    \item $M$ が $w$ を受理する $\Rightarrow L(M_2) = \Sigma^*$（正規）$\Rightarrow \langle M_2 \rangle \in REGULAR_{\text{TM}}$
+    \item $M$ が $w$ を受理しない $\Rightarrow L(M_2) = \{0^n 1^n\}$（非正規）$\Rightarrow \langle M_2 \rangle \notin REGULAR_{\text{TM}}$
+\end{itemize}
+よって $A_{\text{TM}} \le_m REGULAR_{\text{TM}}$。これより $\overline{A_{\text{TM}}} \le_m \overline{REGULAR_{\text{TM}}}$ となり、$\overline{REGULAR_{\text{TM}}}$ は認識不可能。
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Q4(1): 結論}
+
+\begin{itemize}
+    \item \textbf{前半:} $\overline{A_{\text{TM}}} \le_m REGULAR_{\text{TM}}$ を示した。\\
+    $\overline{A_{\text{TM}}}$ は認識不可能であるため、写像還元の性質により $REGULAR_{\text{TM}}$ もチューリング認識不可能である。
+    \vspace{1em}
+    \item \textbf{後半:} $\overline{A_{\text{TM}}} \le_m \overline{REGULAR_{\text{TM}}}$ を示した。\\
+    同様に、$\overline{REGULAR_{\text{TM}}}$ もチューリング認識不可能である。
 \end{itemize}
 
+\begin{center}
+    \textbf{以上より、$REGULAR_{\text{TM}}$ と その補集合はどちらも認識不可能である。}
+\end{center}
 \end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Q4(1) 第2部: $REGULAR_{\text{TM}}$ の認識不可能製（続き）}
-
-よって $\langle M, w \rangle \in A_{\text{TM}} \iff \langle M' \rangle \notin REGULAR_{\text{TM}}$
-
-つまり $\langle M, w \rangle \in A_{\text{TM}} \iff \langle M' \rangle \in \overline{REGULAR_{\text{TM}}}$
-
-このため $A_{\text{TM}} \le_{m} \overline{REGULAR_{\text{TM}}}$ が成立する。
-
-$\overline{A_{\text{TM}}}$ は Turing 認識不可能であるため、写像帰着の性質より $REGULAR_{\text{TM}}$ も Turing 認識不可能である。
-
-\end{frame}
-
-
-
-
-
