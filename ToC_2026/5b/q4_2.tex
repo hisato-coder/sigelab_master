@@ -1,4 +1,140 @@
 \begin{frame}[fragile]
+\frametitle{Q4 (1) \hspace{3mm} (i) $REGULAR_{TM}$ の認識不可能性(別解)}
+
+\textbf{証明:}
+
+$REGULAR_{TM}$ はTuring認識不可能であることを示す．
+
+$\overline{A_{TM}}$ はTuring認識不可能であるので，定理 5.29 (もし$A \le_{m} B$ かつ $A$ がTuring認識不可能なら $B$ もTuring認識不可能である)より写像帰着 $\overline{A_{TM}} \le_{m} REGULAR_{TM}$ を示せば，$REGULAR_{TM}$ もTuring認識不可能であることが示される．
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+\frametitle{Q4 (1) \hspace{3mm} (i) $REGULAR_{TM}$ の認識不可能性(別解)の続き}
+
+そこで，$\overline{A_{TM}}$ から $REGULAR_{TM}$ への写像帰着 $f$ を実現するチューリング機械 $F$ を以下のように構成する．
+
+$F =$ 「入力 $\langle M, w \rangle$ に対して：
+
+\begin{enumerate}
+    \item $\langle M, w \rangle$ から以下の動作をする TM $M_{1}$ の設計図を構築する．
+
+     $M_{1}$ = 「入力 $x$ に対して：
+
+    \begin{enumerate}
+        \item[1.] $x$ が $0^{n}1^{n}$ の形であれば受理する．
+        \item[2.] その他の入力($x \neq 0^{n}1^{n}$)であれば，$w$ を入力として $M$ を実行し，$M$ が受理した場合は拒否する( $M$ が受理しない場合は受理する)．」
+    \end{enumerate}
+
+    \item 構築した設計図 $\langle M_{1} \rangle$ を出力する．」
+
+\end{enumerate}
+
+このTM $F$ は，与えられたマシンの記述を書き換えるだけであり，有限時間で必ず終了するため計算可能である．
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+\frametitle{Q4 (1) \hspace{3mm} (i) $REGULAR_{TM}$ の認識不可能性(別解)の続き}
+
+次に，この変換において「$\langle M, w \rangle \in \overline{A_{TM}} \Leftrightarrow f(\langle M, w \rangle) \in REGULAR_{TM}$」が成り立つことを示す．
+
+\begin{enumerate}
+  \item[・] $\langle M, w \rangle \in \overline{A_{TM}}$ の場合( $M$ が $w$ を受理しない場合 )： \\
+$M_{1}$ は任意の入力 $x$ を受理するため， $L(M_{1}) = \Sigma^{\ast}$ である．これは正則であるため，$f(\langle M, w \rangle) \in REGULAR_{TM}$ が成り立つ．
+\end{enumerate}
+
+\begin{enumerate}
+  \item[・] $\langle M, w \rangle \notin \overline{A_{TM}}$ の場合( $M$ が $w$ を受理する場合 )： \\
+$M_{1}$ は $0^{n}1^{n}$ の形のみ受理するため， $L(M_{1}) = L(0^{n}1^{n})$ である．これは正則でないため，$f(\langle M, w \rangle) \notin REGULAR_{TM}$ が成り立つ．
+\end{enumerate}
+
+以上のことから，$\overline{A_{TM}}$ を $REGULAR_{TM}$ へ写像帰着可能であることが示された（$\overline{A_{TM}} \le_{m} REGULAR_{TM}$）．したがって，定理 5.29 (もし$A \le_{m} B$ かつ $A$ がTuring認識不可能なら $B$ もTuring認識不可能である)より $REGULAR_{TM}$ はTuring認識不可能である．
+
+\end{frame}
+
+
+
+
+\begin{frame}[fragile]
+\frametitle{Q4 (1) \hspace{3mm} (ii) $\overline{REGULAR_{TM}}$ の認識不可能性(別解)}
+
+\textbf{証明:}
+
+$\overline{REGULAR_{TM}}$ はTuring認識不可能であることを示す．
+
+$\overline{A_{TM}}$ はTuring認識不可能であるので，定理 5.29 (もし$A \le_{m} B$ かつ $A$ がTuring認識不可能なら $B$ もTuring認識不可能である)より写像帰着 $\overline{A_{TM}} \le_{m} \overline{REGULAR_{TM}}$ を示せば，$\overline{REGULAR_{TM}}$ もTuring認識不可能であることが示される．
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+\frametitle{Q4 (1) \hspace{3mm} (ii) $\overline{REGULAR_{TM}}$ の認識不可能性(別解)の続き}
+
+そこで，$\overline{A_{TM}}$ から $\overline{REGULAR_{TM}}$ への写像帰着 $g$ を実現するチューリング機械 $G$ を以下のように構成する．
+
+$G =$ 「入力 $\langle M, w \rangle$ に対して：
+
+\begin{enumerate}
+    \item $\langle M, w \rangle$ から以下の動作をする TM $M_{2}$ の設計図を構築する．
+
+     $M_{2}$ = 「入力 $x$ に対して：
+
+\begin{enumerate}
+  \item[1.] $x$ が $0^{n}1^{n}$ の形であれば受理する．
+
+  \item[2.] その他の入力($x \neq 0^{n}1^{n}$)であれば，$w$ を入力として $M$ を実行し，$M$ が受理した場合は受理する( $M$ が受理しない場合は拒否する)．
+\end{enumerate}
+
+    \item 構築した設計図 $\langle M_{2} \rangle$ を出力する．」
+\end{enumerate}
+
+このTM $G$ は，与えられたマシンの記述を書き換えるだけであり，有限時間で必ず終了するため計算可能である．
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+\frametitle{Q4 (1) \hspace{3mm} (ii) $\overline{REGULAR_{TM}}$ の認識不可能性(別解)の続き}
+
+次に，この変換において「$\langle M, w \rangle \in \overline{A_{TM}} \Leftrightarrow g(\langle M, w \rangle) \in \overline{REGULAR_{TM}}$」が成り立つことを示す．
+
+\begin{enumerate}
+  \item[・] $\langle M, w \rangle \in \overline{A_{TM}}$ の場合( $M$ が $w$ を受理しない場合 )： \\
+$M_{2}$ は $0^{n}1^{n}$ の形のみ受理するため， $L(M_{2}) = L(0^{n}1^{n})$ である．これは正則でないため，$g(\langle M, w \rangle) \notin \overline{REGULAR_{TM}}$ が成り立つ．
+\end{enumerate}
+
+\begin{enumerate}
+  \item[・] $\langle M, w \rangle \notin \overline{A_{TM}}$ の場合( $M$ が $w$ を受理する場合 )： \\
+$M_{2}$ は 任意の入力 $x$ を受理するため， $L(M_{2}) = \Sigma^{\ast}$ である．これは正則であるため，$g(\langle M, w \rangle) \in \overline{REGULAR_{TM}}$ が成り立つ．
+\end{enumerate}
+
+以上のことから，$\overline{A_{TM}}$ を $\overline{REGULAR_{TM}}$ へ写像帰着可能であることが示された（$\overline{A_{TM}} \le_{m} \overline{REGULAR_{TM}}$）．したがって，定理 5.29 (もし$A \le_{m} B$ かつ $A$ がTuring認識不可能なら $B$ もTuring認識不可能である)より $\overline{REGULAR_{TM}}$ はTuring認識不可能である． \\
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+\frametitle{Q4 (1) 証明のまとめ}
+
+(i) と (ii) より，$REGULAR_{TM}$ と $\overline{REGULAR_{TM}}$ はどちらもTuring認識不可能である．
+\hfill \qed
+
+\end{frame}
+
+
+
+
+
+
+\begin{frame}[fragile]
 \frametitle{Q4 (2) 問題}
 
 \begin{alertblock}{問題}
