@@ -1,5 +1,5 @@
 % q2.tex
-\begin{frame}{q2 問題}
+\begin{frame}[fragile]\frametitle{Q2 問題}
   \begin{alertblock}{問い}
     $A \le_{\mathrm{m}} B$ であり、かつ $B$ が正規言語であるとする。
     このとき、$A$ は必ず正規言語であると言えるか？
@@ -10,7 +10,7 @@
 \end{frame}
 
 
-\begin{frame}{具体例の構成}
+\begin{frame}[fragile]\frametitle{Q2 解答}
   \begin{itemize}
     \item $B$ を正規言語とする（例：$B = \{0^*1^*\}$）。
     \item $A$ を非正規言語とする（例：$A = \{0^n1^n \mid n \ge 0\}$）。
@@ -18,7 +18,7 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{写像帰着の構成}
+\begin{frame}[fragile]\frametitle{Q2 写像帰着の構成}
     $A$ から $B$ への写像帰着を構築するための関数 $f$ を以下のように定義する。
 
     \begin{exampleblock}{関数 $f$ の定義}
@@ -36,6 +36,6 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{結論}
+\begin{frame}[fragile]\frametitle{Q2 結論}
     以上の構成により、$A$ は $B$ へ写像帰着可能であるが、$A$ は非正規言語であるため、$A$ は必ずしも正規言語であるとは限らないことが示された。
 \end{frame}
