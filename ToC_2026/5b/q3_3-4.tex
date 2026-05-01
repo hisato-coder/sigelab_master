@@ -9,6 +9,7 @@
   \item \textbf{目標:} $T$ がTuring認識不可能であることを示す．
   \item \textbf{証明のキーポイント:} \alert{写像帰着の性質と定理5.29を活用する}
   \begin{itemize}
+      \item 定理$5.29$:  $A \le_m B$ かつ$B$ がTuring認識不可能ならば $A$ もTuring認識不可能である．
       \item $\overline{A_{\mathrm{TM}}} \le_m T$ を直接示す代わりに、それと同値である \textbf{$A_{\mathrm{TM}} \le_m \overline{T}$} を示す（$A \le_m B \iff \overline{A} \le_m \overline{B}$）．
       \item すなわち、「$M$が$w$を受理する $\iff$ $L(M')$が反転について\textbf{閉じない}」となるような $M'$ を構成できれば証明完了となる．
   \end{itemize}
@@ -121,6 +122,7 @@ $M'$ の定義より，$M$ が $w$ を受理するならば $L(M') = \{00, 10\}$
       \item 認識可能であることが既知である \alert{$\overline{E_{\mathrm{TM}}}$} に帰着させる．
       \item ※ $E_{\mathrm{TM}}$ は空言語を受理するTMの集合なので、$\overline{E_{\mathrm{TM}}}$ は「空ではない（何か1つでも受理する）言語」を受理するTMの集合である．
       \item つまり、$OL \le_m \overline{E_{\mathrm{TM}}}$ を示せばよい．
+      \item 定理5.28:$A \le_m B$ かつ$B$ がTuring認識可能ならば $A$ もTuring認識可能である．
   \end{itemize}
 \end{itemize}
 \end{frame}
