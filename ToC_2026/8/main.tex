@@ -1,6 +1,23 @@
 \documentclass[aspectratio=169]{beamer}
 \usepackage{luatexja}
 \usepackage{luatexja-fontspec}
+\usepackage{listings}
+\usepackage{xcolor} % コードの色付けに必要
+
+\lstset{
+    basicstyle=\ttfamily\small,        % 基本のフォントスタイルとサイズ
+    keywordstyle=\color{blue}\bfseries, % キーワード（if, returnなど）のスタイル
+    commentstyle=\color{green!50!black},% コメントのスタイル
+    stringstyle=\color{red},           % 文字列のスタイル
+    showstringspaces=false,            % 文字列中の空白を記号にしない
+    numbers=left,                      % 行番号を左に表示
+    numberstyle=\tiny\color{gray},     % 行番号のスタイル
+    stepnumber=1,                      % 1行ごとに番号を振る
+    frame=single,                      % コードブロックを実線で囲む（tbにすると上下線のみ）
+    breaklines=true,                   % 長い行は自動的に折り返す
+    tabsize=4,                         % タブのインデント幅
+    captionpos=t                       % キャプション（タイトル）を上に表示
+}
 \setmainjfont[BoldFont=IPAexGothic]{IPAexGothic}
 
 % Metropolisテーマ
