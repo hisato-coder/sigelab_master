@@ -1,4 +1,4 @@
-//2つの自然数 m と n を取り，m を n で割った余りを返す関数 mod
+//2つの自然数mとnを取り，mをnで割った余りを返す関数 mod
 #include <stdio.h>
 int iszero(int m) { return m == 0; }
 int pi(int m) { if (m == 0) return 0; return m - 1; }

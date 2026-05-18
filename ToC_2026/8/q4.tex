@@ -110,7 +110,7 @@
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Q4-3 数値の等価演算子の実装(C言語ver.)}
+\frametitle{Q4-3 小なり判定の実装(C言語ver.)}
     % [c] を指定することで、左右の列の「中心軸」が垂直方向に揃います
     \begin{columns}[c]
         
@@ -183,24 +183,35 @@
     \end{columns}
 \end{frame}
 
-
 \begin{frame}[fragile]
-\frametitle{Q4-4 コード例(C言語ver.)}
+\frametitle{Q4-4 剰余関数 (mod) の実装 コード例}
     \begin{columns}[t]
+        
+        % 左側：1行目〜20行目
         \begin{column}{0.48\textwidth}
-            % 1行目から11行目までを表示
-            \lstinputlisting[language=C, lastline=20, basicstyle=\ttfamily\tiny]{./question4/C/4.c}
+            \lstinputlisting[
+                language=C, 
+                basicstyle=\ttfamily\tiny,
+                lastline=20
+            ]{./question4/C/4.c}
         \end{column}
         
+        % 右側：21行目〜40行目
         \begin{column}{0.48\textwidth}
-            % 12行目から最後までを表示
-            \lstinputlisting[language=C, firstline=21, lastline=40, basicstyle=\ttfamily\tiny]{./question4/C/4.c}
+            \lstinputlisting[
+                language=C, 
+                basicstyle=\ttfamily\tiny,
+                firstline=21, 
+                lastline=40,
+                firstnumber=21 % ← ここを追加！ 21行目から番号を振る
+            ]{./question4/C/4.c}
         \end{column}
+        
     \end{columns}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Q4-5 数値の等価演算子の実装(C言語ver.)}
+\frametitle{Q4-5 cut-off subtractionの原始帰納的実装(C言語ver.)}
     % [c] を指定することで、左右の列の「中心軸」が垂直方向に揃います
     \begin{columns}[c]
         
