@@ -1,3 +1,129 @@
 \begin{frame}
-\frametitle{Q5 ふさわしい言葉}
+\frametitle{Q5 問題}
+
+\begin{alertblock}{問題}
+
+不動点コンビネータ$ Y $と，$ lt $，$ add $，cut-off subtraction，$ mult $を表す$ \lambda $項を用いて，$ fac $とmoduloの$ \lambda $項を構成せよ．
+
+\end{alertblock}
+
+\begin{enumerate}
+  \item[(1)] $ fac $ : 階乗
+  \item[(2)] $ mod $ : 剰余(modulo)
+\end{enumerate}
+
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Q5 前提となる$\lambda$項の定義}
+
+前提となる$\lambda$項の定義は以下の通りである．
+\begin{enumerate}
+  \item[・] $ Y $ : 不動点コンビネータ．任意の$\lambda$項$M$に対して$Y M =_{\beta} M (Y M)$が成り立つ．
+  \item[・] $ lt $ : 比較．2つのChurch数$ \bar{m}, \bar{n} $に対して$ m < n $ならば$\mathrm{t}$，そうでなければ$\mathrm{f}$を返す．
+  \item[・] $ add $ : 加算．2つのChurch数$ \bar{m}, \bar{n} $に対して$ \overline{m + n} $の値を返す．
+  \item[・] $ monus $ : cut-off subtraction(切り捨て減算)．2つのChurch数$ \bar{m}, \bar{n} $に対して$ \overline{m \dot{-} n} $の値を返す．
+  \item[・] $ mult $ : 乗算．2つのChurch数$ \bar{m}, \bar{n} $に対して$ \overline{m \times n} $の値を返す．
+\end{enumerate}
+
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Q5 (1) $fac$ : 解答}
+
+\begin{enumerate}
+    \item[1.] 漸化式への変換:
+    \begin{align*}
+    \intertext{$fac(m)$は以下のように条件分岐を用いた再帰処理として定義できる．}
+    fac (m) = (\text{If}\ m = 0 \text{ then } 1 \text{ else } m \cdot fac(m - 1)) \\
+    \intertext{また，$(lt\ m\ \bar{1})$が$m=0$の判定，$(monus\ m\ \bar{1})$が$m-1$の計算，$mult\ m\ n$が乗算を表すので，以下のように書ける．}
+    fac\ m = (lt\ m \bar{1}) \bar{1} (mult\ m (fac (monus\ m \bar{1})))
+    \end{align*}
+\end{enumerate}
+
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Q5 (1) $fac$ : 解答の続き}
+
+\begin{enumerate}
+    \item[2.] $ \lambda $項の構築:
+    \begin{align*}
+    \intertext{$fac(m) = M_0$を$fac = \lambda m. M_0$の形に書き換える．}
+    fac = \lambda m. (lt\ m\ \bar{1}) \bar{1} (mult\ m (fac (monus\ m\ \bar{1}))) \\
+    \intertext{ここで，右辺に残った$fac$を$g$として抽象化し，自己参照を含まない$\lambda$項$M$を得る．}
+    M \equiv \lambda g m. (lt\ m\ \bar{1}) \bar{1} (mult\ m (g (monus\ m\ \bar{1}))) \\
+    \end{align*}
+\end{enumerate}
+
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Q5 (1) $fac$ : 解答の続き}
+
+\begin{enumerate}
+    \item[3.] 不動点コンビネータの適用:
+    \begin{align*}
+    \intertext{$ Y $の性質($YM =_{\beta} M (Y M)$)を利用して$fac \equiv Y M$と定義することで，階乗関数$fac$の$\lambda$項は以下のようになる．}
+    fac \equiv Y (\lambda g m. (lt\ m \bar{1}) \bar{1} (mult\ m (g (monus\ m \bar{1}))) )
+    \end{align*}
+\end{enumerate}
+
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Q5 (2) $mod$ : 解答}
+
+\begin{enumerate}
+    \item[1.] 漸化式への変換:
+    \begin{align*}
+    \intertext{$mod(m, n)$は以下のように条件分岐を用いた再帰処理として定義できる．}
+    mod(m, n) = (\text{If}\ m < n \text{ then } m \text{ else } mod(m - n, n)) \\
+    \intertext{また，$(lt\ m\ n)$が$m < n$の判定，$(monus\ m\ n)$が$m - n$の計算を表すので，以下のように書ける．}
+    mod(m, n) = (lt\ m\ n) m (mod(monus\ m\ n) n)
+    \end{align*}
+\end{enumerate}
+
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Q5 (2) $mod$ : 解答の続き}
+
+\begin{enumerate}
+    \item[2.] $ \lambda $項の構築:
+    \begin{align*}
+    \intertext{$mod(m, n) = M_0$を$mod = \lambda m n. M_0$の形に書き換える．}
+    mod = \lambda m n. (lt\ m\ n) m (mod(monus\ m\ n) n) \\
+    \intertext{ここで，右辺に残った$mod$を$g$として抽象化し，自己参照を含まない$\lambda$項$M$を得る．}
+    M \equiv \lambda g m n. (lt\ m\ n) m (g (monus\ m\ n) n) 
+    \end{align*}
+\end{enumerate}
+
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Q5 (2) $mod$ : 解答の続き}
+
+\begin{enumerate}
+    \item[3.] 不動点コンビネータの適用:
+    \begin{align*}
+    \intertext{$ Y $の性質($YM =_{\beta} M (Y M)$)を利用して$mod \equiv Y M$と定義することで，剰余関数$mod$の$\lambda$項は以下のようになる．}
+    mod \equiv Y (\lambda g m n. (lt\ m\ n) m (g (monus\ m\ n) n) )
+    \end{align*}
+\end{enumerate}
+
 \end{frame}
