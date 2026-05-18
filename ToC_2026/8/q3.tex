@@ -1,3 +1,552 @@
-\begin{frame}
-\frametitle{Q3 ふさわしい言葉}
+\begin{frame}[fragile]
+\frametitle{Question 3 問題}
+
+真理値
+$\text{t}, \text{f}$
+および条件演算子を用いて, 
+$\land,\quad \lor,\quad \neg$
+を表す $\lambda$ 項を定義する.
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{前提条件・定義(1)}
+
+ここで, 問題文で与えられた真理値は
+
+\[
+\text{t}
+\equiv
+\lambda xy.x
+\]
+
+\[
+\text{f}
+\equiv
+\lambda xy.y
+\]
+
+である.
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{前提条件・定義(2)}
+
+また, 条件演算子は
+
+\[
+\text{If }p\text{ then }X,\text{ else }Y
+\equiv
+pXY
+\]
+
+で表される.
+
+すなわち, 
+
+\[
+p=\text{t}
+\]
+
+のときは第1引数が選ばれ, 
+
+\[
+p=\text{f}
+\]
+
+のときは第2引数が選ばれる.
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{conjunction（論理積）$\land$ 解答}
+
+論理積の真理値表は次の通りである.
+
+\[
+\begin{array}{c|c|c}
+p & q & p\land q\\
+\hline
+T & T & T\\
+T & F & F\\
+F & T & F\\
+F & F & F
+\end{array}
+\]
+
+表より, $p$の真理値が真のとき$p \land q$は$q$の真理値, 偽のとき$q$の真理値に関係なく偽となることが分かる.
+\end{frame}
+
+\begin{frame}[fragile]
+
+\frametitle{$\land$ 続き}
+
+これを条件式として表現すると, 
+
+\[
+\text{If }p\text{ then }q,
+\text{ else }\text{f}
+\]
+
+となり, 条件演算子
+
+\[
+pXY
+\]
+
+を用いると, 
+
+\[
+p\land q = pq\text{f}
+\]
+
+である.
+
+したがって, 左辺の$p, q$において$\lambda$抽象を行うと, 
+
+\[
+\boxed{
+\land \equiv \lambda pq.pq\text{f}
+}
+\]
+
+となる.
+
+\end{frame}
+
+\begin{frame}[fragile]
+
+\frametitle{$\land$ 動作確認 ($\text{t}\land \text{t}$)}
+
+\begin{align*}
+(\lambda pq.pq\mathrm{f})\mathrm{tt}
+&=
+((\lambda p.(\lambda q.pq\mathrm{f}))
+\mathrm{t})\mathrm{t}
+\\
+&\triangleright_{\beta}
+(\lambda q.\mathrm{t}q\mathrm{f})\mathrm{t}
+\\
+&\triangleright_{\beta}
+\mathrm{ttf}
+\\
+&=
+((\lambda xy.x)\mathrm{t})\mathrm{f}
+\\
+&=
+((\lambda x.(\lambda y.x))
+\mathrm{t})\mathrm{f}
+\\
+&\triangleright_{\beta}
+(\lambda y.\mathrm{t})\mathrm{f}
+\\
+&\triangleright_{\beta}
+\mathrm{t}
+\end{align*}
+
+これは真理値表と一致している.
+
+\end{frame}
+
+\begin{frame}[fragile]
+
+\frametitle{$\land$ 動作確認 ($\text{t}\land \text{f}$)}
+
+\begin{align*}
+(\lambda pq.pq\mathrm{f})\mathrm{tf}
+&=
+((\lambda p.(\lambda q.pq\mathrm{f}))
+\mathrm{t})\mathrm{f}
+\\
+&\triangleright_{\beta}
+(\lambda q.\mathrm{t}q\mathrm{f})\mathrm{f}
+\\
+&\triangleright_{\beta}
+\mathrm{tff}
+\\
+&=
+((\lambda xy.x)\mathrm{f})\mathrm{f}
+\\
+&=
+((\lambda x.(\lambda y.x))
+\mathrm{f})\mathrm{f}
+\\
+&\triangleright_{\beta}
+(\lambda y.\mathrm{f})\mathrm{f}
+\\
+&\triangleright_{\beta}
+\mathrm{f}
+\end{align*}
+
+これは真理値表と一致している.
+
+\end{frame}
+
+\begin{frame}[fragile]
+
+\frametitle{$\land$ 動作確認 ($\text{f}\land \text{t}$)}
+
+\begin{align*}
+(\lambda pq.pq\mathrm{f})\mathrm{ft}
+&=
+((\lambda p.(\lambda q.pq\mathrm{f}))
+\mathrm{f})\mathrm{t}
+\\
+&\triangleright_{\beta}
+(\lambda q.\mathrm{f}q\mathrm{f})\mathrm{t}
+\\
+&\triangleright_{\beta}
+\mathrm{ftf}
+\\
+&=
+((\lambda xy.y)\mathrm{t})\mathrm{f}
+\\
+&=
+((\lambda x.(\lambda y.y))
+\mathrm{t})\mathrm{f}
+\\
+&\triangleright_{\beta}
+(\lambda y.y)\mathrm{f}
+\\
+&\triangleright_{\beta}
+\mathrm{f}
+\end{align*}
+
+これは真理値表と一致している.
+
+\end{frame}
+
+\begin{frame}[fragile]
+
+\frametitle{$\land$ 動作確認 ($\text{f}\land \text{f}$)}
+
+\begin{align*}
+(\lambda pq.pq\mathrm{f})\mathrm{ff}
+&=
+((\lambda p.(\lambda q.pq\mathrm{f}))
+\mathrm{f})\mathrm{f}
+\\
+&\triangleright_{\beta}
+(\lambda q.\mathrm{f}q\mathrm{f})\mathrm{f}
+\\
+&\triangleright_{\beta}
+\mathrm{fff}
+\\
+&=
+((\lambda xy.y)\mathrm{f})\mathrm{f}
+\\
+&=
+((\lambda x.(\lambda y.y))
+\mathrm{f})\mathrm{f}
+\\
+&\triangleright_{\beta}
+(\lambda y.y)\mathrm{f}
+\\
+&\triangleright_{\beta}
+\mathrm{f}
+\end{align*}
+
+これは真理値表と一致している.
+
+よって正しく論理積を表現している.
+
+\end{frame}
+\begin{frame}{disjunction（論理和）$\lor$ 解答}
+
+論理和の真理値表は次の通りである.
+
+\[
+\begin{array}{c|c|c}
+p & q & p\lor q\\
+\hline
+T & T & T\\
+T & F & T\\
+F & T & T\\
+F & F & F
+\end{array}
+\]
+
+表より, $p$の真理値が真であるとき$p\lor q$は$q$の真理値に関係なく真, 偽であるとき$q$の真理値となる.
+
+\end{frame}
+
+\begin{frame}[fragile]
+
+\frametitle{$\lor$ 続き}
+
+これを条件式として書くと, 
+
+\[
+\text{If }p\text{ then }\text{t},
+\text{ else }q
+\]
+
+となり, 条件演算子を用いると, 
+
+\[
+p\lor q
+=
+p\text{t}q
+\]
+
+である.
+
+したがって, 左辺の$p, q$において$\lambda$抽象を行うと, 
+
+\[
+\boxed{
+\lor
+\equiv
+\lambda pq.p\text{t}q
+}
+\]
+
+となる.
+
+\end{frame}
+
+\begin{frame}[fragile]
+
+\frametitle{$\lor$ 動作確認 ($\text{t}\lor \text{t}$)}
+
+\begin{align*}
+(\lambda pq.p\mathrm{t}q)\mathrm{tt}
+&=
+((\lambda p.(\lambda q.p\mathrm{t}q))
+\mathrm{t})\mathrm{t}
+\\
+&\triangleright_{\beta}
+(\lambda q.\mathrm{tt}q)\mathrm{t}
+\\
+&\triangleright_{\beta}
+\mathrm{ttt}
+\\
+&=
+((\lambda xy.x)\mathrm{t})\mathrm{t}
+\\
+&=
+((\lambda x.(\lambda y.x))
+\mathrm{t})\mathrm{t}
+\\
+&\triangleright_{\beta}
+(\lambda y.\mathrm{t})\mathrm{t}
+\\
+&\triangleright_{\beta}
+\mathrm{t}
+\end{align*}
+
+これは真理値表と一致している.
+
+\end{frame}
+
+\begin{frame}[fragile]
+
+\frametitle{$\lor$ 動作確認 ($\text{t}\lor \text{f}$)}
+
+\begin{align*}
+(\lambda pq.p\mathrm{t}q)\mathrm{tf}
+&=
+((\lambda p.(\lambda q.p\mathrm{t}q))
+\mathrm{t})\mathrm{f}
+\\
+&\triangleright_{\beta}
+(\lambda q.\mathrm{tt}q)\mathrm{f}
+\\
+&\triangleright_{\beta}
+\mathrm{ttf}
+\\
+&=
+((\lambda xy.x)\mathrm{t})\mathrm{f}
+\\
+&=
+((\lambda x.(\lambda y.x))
+\mathrm{t})\mathrm{f}
+\\
+&\triangleright_{\beta}
+(\lambda y.\mathrm{t})\mathrm{f}
+\\
+&\triangleright_{\beta}
+\mathrm{t}
+\end{align*}
+
+これは真理値表と一致している.
+
+\end{frame}
+
+\begin{frame}[fragile]
+
+\frametitle{$\lor$ 動作確認 ($\text{f}\lor \text{t}$)}
+
+\begin{align*}
+(\lambda pq.p\mathrm{t}q)\mathrm{ft}
+&=
+((\lambda p.(\lambda q.p\mathrm{t}q))
+\mathrm{f})\mathrm{t}
+\\
+&\triangleright_{\beta}
+(\lambda q.\mathrm{ft}q)\mathrm{t}
+\\
+&\triangleright_{\beta}
+\mathrm{ftt}
+\\
+&=
+((\lambda xy.y)\mathrm{t})\mathrm{t}
+\\
+&=
+((\lambda x.(\lambda y.y))
+\mathrm{t})\mathrm{t}
+\\
+&\triangleright_{\beta}
+(\lambda y.y)\mathrm{t}
+\\
+&\triangleright_{\beta}
+\mathrm{t}
+\end{align*}
+
+これは真理値表と一致している.
+
+\end{frame}
+
+\begin{frame}[fragile]
+
+\frametitle{$\lor$ 動作確認 ($\text{f}\lor \text{f}$)}
+
+\begin{align*}
+(\lambda pq.p\mathrm{t}q)\mathrm{ff}
+&=
+((\lambda p.(\lambda q.p\mathrm{t}q))
+\mathrm{f})\mathrm{f}
+\\
+&\triangleright_{\beta}
+(\lambda q.\mathrm{ft}q)\mathrm{f}
+\\
+&\triangleright_{\beta}
+\mathrm{ftf}
+\\
+&=
+((\lambda xy.y)\mathrm{t})\mathrm{f}
+\\
+&=
+((\lambda x.(\lambda y.y))
+\mathrm{t})\mathrm{f}
+\\
+&\triangleright_{\beta}
+(\lambda y.y)\mathrm{f}
+\\
+&\triangleright_{\beta}
+\mathrm{f}
+\end{align*}
+
+これは真理値表と一致している.
+
+よって正しく論理和を表現している.
+\end{frame}
+
+\begin{frame}{negation（否定）$\neg$ 解答}
+
+否定の真理値表は次の通りである.
+
+\[
+\begin{array}{c|c}
+p & \neg p\\
+\hline
+T & F\\
+F & T
+\end{array}
+\]
+
+表より, $p$が真のとき$\neg p$は偽, 偽のとき真となる。
+
+\end{frame}
+
+\begin{frame}[fragile]
+
+\frametitle{$\neg$ 続き}
+
+これを条件式として表現すると, 
+
+\[
+\text{If }p\text{ then }\text{f},
+\text{ else }\text{t}
+\]
+
+となり、条件演算子を用いると, 
+
+\[
+\neg p
+=
+p\text{ft}
+\]
+
+である.
+
+したがって, 左辺の$p$において$\lambda$抽象を行うと, 
+
+\[
+\boxed{
+\neg
+\equiv
+\lambda p.p\text{ft}
+}
+\]
+
+となる.
+
+\end{frame}
+
+\begin{frame}[fragile]
+
+\frametitle{$\neg$ 動作確認 ($\neg \text{t}$)}
+
+\begin{align*}
+(\lambda p.p\mathrm{ft})\mathrm{t}
+\\
+&\triangleright_{\beta}
+\mathrm{tft}
+\\
+&=
+(\lambda xy.x)\mathrm{ft}
+\\
+&=
+((\lambda x.(\lambda y.x))
+\mathrm{f})\mathrm{t}
+\\
+&\triangleright_{\beta}
+(\lambda y.\mathrm{f})\mathrm{t}
+\\
+&\triangleright_{\beta}
+\mathrm{f}
+\end{align*}
+
+これは真理値表と一致する.
+
+\end{frame}
+
+\begin{frame}[fragile]
+
+\frametitle{$\neg$ 動作確認 ($\neg \text{f}$)}
+
+\begin{align*}
+(\lambda p.p\mathrm{ft})\mathrm{f}
+\\
+&\triangleright_{\beta}
+\mathrm{fft}
+\\
+&=
+(\lambda xy.y)\mathrm{ft}
+\\
+&=
+((\lambda x.(\lambda y.y))
+\mathrm{f})\mathrm{t}
+\\
+&\triangleright_{\beta}
+(\lambda y.y)\mathrm{t}
+\\
+&\triangleright_{\beta}
+\mathrm{t}
+\end{align*}
+
+これは真理値表と一致する. 
+
+よって正しく否定を表現している。
 \end{frame}
