@@ -1,3 +1,151 @@
+\begin{frame}[fragile]\frametitle{Q1(1) 問題}
+  \begin{alertblock}{問い}
+    任意の$\lambda$-term $M$ と任意の変数$x$について，$M$の帰納法によって，
+    $(\lambda x.M)x =_{\beta} M$ を示せ．
+  \end{alertblock}
+  \begin{itemize}
+    \item \textbf{証明のキーポイント:} \alert{帰納法の適用}
+    \begin{itemize}
+        \item $M$の構造に基づいて帰納法を適用する．
+        \item 最小の事象を確認する．
+        \item ある事象が成り立つと仮定したとき，一つ大きい事象について成り立つことを示す．
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
 \begin{frame}
-\frametitle{Q1 ふさわしい言葉}
+\frametitle{Q1 (1) 証明の概要}
+\begin{itemize}
+    \item 最小の事象について
+    \begin{itemize}
+        \item $M$ が変数 $x$ のとき
+        \item $M$ が定数のとき
+    \end{itemize}
+    \item ある事象が成り立つと仮定したとき，一つ大きい事象について成り立つことを示す
+    \begin{itemize}
+        \item $M$ が $M_1 M_2$ のとき
+        \item $M$ が $\lambda x. M_1$ のとき
+        \item $M$ が $\lambda y. M_1$ ($y \neq x$) のとき
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Q1 (1) 証明}
+\begin{enumerate}
+    \item $M \equiv x$のとき
+    \begin{align*}
+    (\lambda x.x)x &\rhd_{1\beta} [x/x]x \\
+    &\equiv x \\
+    &\equiv M \\
+    \end{align*}
+
+    \item $M \equiv a$かつ$a \not\equiv x$のとき
+    \begin{align*}
+    (\lambda x.a)x &\rhd_{1\beta} [x/x]a \\
+    &\equiv a \\
+    &\equiv M \\
+    \end{align*}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Q1 (1) 証明}
+    \begin{enumerate}
+        \item[3] $M \equiv M_1 M_2$のとき
+        
+        $(\lambda x.M_1)x =_{\beta} M_1$ と $(\lambda x.M_2)x =_{\beta} M_2$ 
+        が成り立つと仮定する．
+        \begin{align*}
+        (\lambda x.M)x &\equiv (\lambda x.(M_1 M_2))x \\
+        &\rhd_{1\beta} [x/x](M_1 M_2) \\
+        &\equiv ([x/x]M_1 [x/x]M_2) \\
+        (\lambda x.M_1)x \rhd_{1\beta} [x/x]M_1 \text{より}=_{\beta}\text{の定義から}\\
+        &=_{\beta}((\lambda x.M_1)x ((\lambda x.M_2)x)) \\
+        &=_{\beta} (M_1 ((\lambda x.M_2)x)) &\text{（仮定より）}\\
+        &=_{\beta} M_1 M_2  &\text{（仮定より）}\\
+        &\equiv M \\
+        \end{align*}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Q1 (1) 証明}
+    \begin{enumerate}
+        \item[4] $M \equiv \lambda x.M_1$のとき
+        \begin{align*}
+            (\lambda x.M)x &\equiv (\lambda x.(\lambda x.P))x\\
+            &\rhd_{1\beta} [x/x](\lambda x.P) \\
+            &\equiv \lambda x.P \\
+            &\equiv M \\
+        \end{align*}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Q1 (1) 証明}
+    \begin{enumerate}
+        \item[5] $M \equiv \lambda y.M_1$ ($y \neq x$) のとき
+        \begin{align*}
+            (\lambda x.M)x &\equiv (\lambda x.(\lambda y.M_1))x \\
+            &\rhd_{1\beta} [x/x](\lambda y.M_1) \\
+            &\equiv \lambda y.[x/x]M_1 \\
+            &=_{\beta} (\lambda y.(\lambda x.M_1)x) \\
+            &=_{\beta} \lambda y.(M_1) &\quad\text{（仮定より）}\\
+            &\equiv M \\
+        \end{align*}
+    \end{enumerate}
+    上記の1$\sim$5より，$(\lambda x.M)x =_{\beta} M$が示された． $\square$
+\end{frame}
+
+\begin{frame}
+    \frametitle{Q1 (2) 問題}
+    \begin{alertblock}{問い}
+    任意の$\lambda$-term $Z$ および変数$x,y_1,y_2,y_3$について，
+    \begin{align*}
+        Y(\lambda xy_1y_2y_3.Z)y_1y_2y_3 =_{\beta} [(Y(\lambda xy_1y_2y_3.Z))/x]Z \\
+    \end{align*}
+    であることを証明せよ． ここで$Y \equiv (\lambda ux.x(uux))(\lambda ux.x(uux))$とする．
+
+    term $Y$は固定点コンビネータであり、すべてのterm $X$に対して$YX =_{\beta} X(YX)$が成り立つ．
+    \end{alertblock}
+    \begin{itemize}
+    \item \textbf{証明のポイント:} 
+        \begin{itemize}
+        \item 左辺を展開して右辺と同様になることを示す．
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Q1 (2) 証明}
+    左辺の省略形を直す．
+    \begin{align*}
+        Y(\lambda xy_1y_2y_3.Z)y_1y_2y_3 &\equiv ((((Y(\lambda x.(\lambda y_1.(\lambda y_2.(\lambda y_3.Z)))))y_1)y_2)y_3) \\
+    \end{align*}
+    $YX =_{\beta} X(YX)$ より
+    \begin{align*}
+        &=_{\beta} (((((\lambda x.(\lambda y_1.(\lambda y_2.(\lambda y_3.Z))))(Y(\lambda x.(\lambda y_1.(\lambda y_2.(\lambda y_3.Z))))))y_1)y_2)y_3) \\
+    \end{align*}
+            ここで $Y(\lambda x.(\lambda y_1.(\lambda y_2.(\lambda y_3.Z))))$ を $W$ とする．
+    \begin{align*}
+        &\equiv (((((\lambda x.(\lambda y_1.(\lambda y_2.(\lambda y_3.Z))))(W))y_1)y_2)y_3) \\
+    \end{align*}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Q1 (2) 証明}
+    \begin{align*}
+        &\rhd_{1\beta} (((([W/x](\lambda y_1.(\lambda y_2.(\lambda y_3.Z))))y_1)y_2)y_3) \\
+        &\equiv ((((\lambda y_1.(\lambda y_2.(\lambda y_3.([W/x]Z))))y_1)y_2)y_3) \\
+        &\rhd_{1\beta} (([y_1/y_1](\lambda y_2.(\lambda y_3.([W/x]Z)))y_2)y_3) \\
+        &\equiv (((\lambda y_2.(\lambda y_3.([W/x]Z)))y_2)y_3) \\
+        &\rhd_{1\beta} ([y_2/y_2](\lambda y_3.([W/x]Z))y_3) \\
+        &\equiv ((\lambda y_3.([W/x]Z))y_3) \\
+        &\rhd_{1\beta} ([y_3/y_3]([W/x]Z)) \\
+        &\equiv ([W/x]Z) \\
+        W \text{を直すと}\\
+        &\equiv [(Y(\lambda xy_1y_2y_3.Z))/x]Z \qquad \square\\
+    \end{align*}
+    
 \end{frame}
