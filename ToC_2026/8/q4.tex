@@ -1,28 +1,30 @@
 \begin{frame}[fragile]
-\frametitle{Q4-1 階乗関数の実装}
+\frametitle{Q4で共通するアルゴリズムのポイント(C言語ver.)}
     % [c] を指定することで、左右の列の「中心軸」が垂直方向に揃います
     \begin{columns}[c]
         
         % 左側：コード
-        \begin{column}{0.65\textwidth}
+        \begin{column}{0.4\textwidth}
             % basicstyle を \tiny に下げることで、下まで途切れずに表示させます
             \lstinputlisting[
                 language=C, 
-                basicstyle=\ttfamily\tiny,
+                basicstyle=\ttfamily\scriptsize,
                 numbers=left,
                 numberstyle=\tiny\color{gray},
-                xleftmargin=1.5em
-            ]{./question4/C/1.c}
+                xleftmargin=1.5em,
+            ]{./question4/C/temp.c}
         \end{column}
         
         % 右側：アルゴリズムのポイント
-        \begin{column}{0.3\textwidth}
+        \begin{column}{0.55\textwidth}
             \small
             \textbf{アルゴリズムのポイント}
             \begin{itemize}
-                \item \texttt{iszero} で終了条件を判定
-                \item \texttt{pi} 関数で引数を1減らす
-                \item 自己呼び出しによる再帰構造
+                \item \texttt{iszero} で終了条件を判定する
+                再帰処理を行う上で，引数が0になったときに処理を終了させるための関数 \\
+                本問の制約により，比較演算子を使用できないため，数値が0かどうかを判定するための関数を実装
+                \item \texttt{pi} で引数を1減らして返す(0以下にならないようにする)\\
+                本問の制約により，減算演算子を使用できないため，数値を1減らすための関数を実装
             \end{itemize}
         \end{column}
         
@@ -30,163 +32,211 @@
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Q4-2 数値の等価演算子の実装}
+\frametitle{Q4-1 階乗関数の実装(C言語ver.)}
     % [c] を指定することで、左右の列の「中心軸」が垂直方向に揃います
     \begin{columns}[c]
         
         % 左側：コード
-        \begin{column}{0.65\textwidth}
+        \begin{column}{0.45\textwidth}
             % basicstyle を \tiny に下げることで、下まで途切れずに表示させます
             \lstinputlisting[
                 language=C, 
-                basicstyle=\ttfamily\tiny,
+                basicstyle=\ttfamily\scriptsize,
                 numbers=left,
                 numberstyle=\tiny\color{gray},
+                xleftmargin=1.5em,
+                firstline=7,
+                lastline=13
+            ]{./question4/C/1.c}
+        \end{column}
+        
+        % 右側：アルゴリズムのポイント
+        \begin{column}{0.5\textwidth}
+            \small
+            \textbf{アルゴリズムのポイント}
+            \begin{itemize}
+                \item 終了条件は \texttt{iszero} で判定
+                \item \texttt{pi} を使用することで引数を1減らす
+                \item 再帰呼び出しによる反復処理($fac(m) = m \times fac(m-1)$) \\
+                pi関数で引数を1減らしながら、fac関数を呼び出すことで、階乗の定義に基づいて計算を行う
+            \end{itemize}
+        \end{column}
+        
+    \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Q4-1 コード例(C言語ver.)}
+    \lstinputlisting[language=C, basicstyle=\ttfamily\tiny]{./question4/C/1.c}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Q4-2 数値の等価演算子の実装(C言語ver.)}
+    % [c] を指定することで、左右の列の「中心軸」が垂直方向に揃います
+    \begin{columns}[c]
+        
+        % 左側：コード
+        \begin{column}{0.45\textwidth}
+            % basicstyle を \tiny に下げることで、下まで途切れずに表示させます
+            \lstinputlisting[
+                language=C, 
+                basicstyle=\ttfamily\scriptsize,
+                numbers=left,
+                numberstyle=\tiny\color{gray},
+                firstline=6,
+                lastline=14,
                 xleftmargin=1.5em
             ]{./question4/C/2.c}
         \end{column}
         
         % 右側：アルゴリズムのポイント
-        \begin{column}{0.3\textwidth}
+        \begin{column}{0.5\textwidth}
             \small
             \textbf{アルゴリズムのポイント}
             \begin{itemize}
-                \item \texttt{iszero} で終了条件を判定
-                \item \texttt{pi} 関数で引数を1減らす
-                \item 自己呼び出しによる再帰構造
+                \item mかnのどちらかが0となるまで，再帰的に引数を1減らしていく
+                0の判定は \texttt{iszero} 関数を使用，引数を1減らす処理は \texttt{pi} 関数を使用して実装
+                \item mが先に0になる場合，nを\texttt{iszero} で判定して，nも0であれば等しいと判定，そうでなければ等しくないと判定
+                \item nが先に0になる場合は既にmが0でないことがわかっているため，等しくないと判定
+                \item 両方とも0になるまで引き続けることで，mとnが等しいかどうかを判定
             \end{itemize}
         \end{column}
-        
     \end{columns}
-
-
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Q4-3 数値の等価演算子の実装}
+\frametitle{Q4-2 コード例(C言語ver.)}
+    \lstinputlisting[language=C, basicstyle=\ttfamily\tiny]{./question4/C/2.c}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Q4-3 数値の等価演算子の実装(C言語ver.)}
     % [c] を指定することで、左右の列の「中心軸」が垂直方向に揃います
     \begin{columns}[c]
         
         % 左側：コード
-        \begin{column}{0.65\textwidth}
+        \begin{column}{0.45\textwidth}
             % basicstyle を \tiny に下げることで、下まで途切れずに表示させます
             \lstinputlisting[
                 language=C, 
-                basicstyle=\ttfamily\tiny,
+                basicstyle=\ttfamily\scriptsize,
                 numbers=left,
                 numberstyle=\tiny\color{gray},
+                firstline=6,
+                lastline=14,
                 xleftmargin=1.5em
             ]{./question4/C/3.c}
         \end{column}
         
         % 右側：アルゴリズムのポイント
-        \begin{column}{0.3\textwidth}
+        \begin{column}{0.5\textwidth}
             \small
             \textbf{アルゴリズムのポイント}
             \begin{itemize}
-                \item \texttt{iszero} で終了条件を判定
-                \item \texttt{pi} 関数で引数を1減らす
-                \item 自己呼び出しによる再帰構造
+                \item 「$m < n$」を判定する関数 \texttt{lt} を実装
+                \item 先のQ4-2のアルゴリズムを応用して、$m$ と $n$ を同時に1減らしていく
+                \item $n$ が先に0になる場合は $m \ge n$ と判定
+                (ここで先にnを判定することで$m=n$のケースを先に処理する)
+                \item $m$ が先に0になる場合は $m < n$ と判定
             \end{itemize}
-        \end{column}
-        
+        \end{column}       
     \end{columns}
-
-    
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Q4-4 剰余関数(mod)の実装 (1/2)}
+\frametitle{Q4-3 コード例(C言語ver.)}
+    \lstinputlisting[language=C, basicstyle=\ttfamily\tiny]{./question4/C/3.c}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Q4-4 剰余関数(mod)の実装(C言語ver.)}
     \begin{columns}[c]
         
         % 左側：コード前半
-        \begin{column}{0.65\textwidth}
+        \begin{column}{0.45\textwidth}
             \lstinputlisting[
                 language=C, 
                 basicstyle=\ttfamily\tiny,
                 numbers=left,
                 numberstyle=\tiny\color{gray},
                 xleftmargin=1.5em,
-                lastline=16 % 1行目から16行目（mod関数の終わり）までを表示
+                firstline=6,
+                lastline=27 % 1行目から27行目（mod関数の終わり）までを表示
             ]{./question4/C/4.c}
         \end{column}
         
         % 右側：アルゴリズムのポイント
-        \begin{column}{0.3\textwidth}
+        \begin{column}{0.5\textwidth}
             \small
             \textbf{アルゴリズムのポイント}
             \begin{itemize}
-                \item 補助関数 \texttt{lt} と \texttt{cut\_off\_sub} を活用
-                \item $m < n$ になるまで再帰的に引く
-                \item 引けなくなった時点の $m$ が余り
+                \item 関数 \texttt{lt} と \texttt{cut\_off\_sub} を活用
+                \item 関数 \texttt{cut\_off\_sub} は $m$と$n$を同時に1減らす関数として実装
+                \item Q4-3で実装した \texttt{lt} 関数を使用して、$m < n$ の判定を行う
+                \item \texttt{lt} 関数で$m < n$が分かっているため，
+                \texttt{cut\_off\_sub} 関数を使用していき，$n$が引けなくなった時点($n=0$)の $m$ が余り
+                \item 0除算はできないため、$n$ が$0$のときはエラーコード($-1$)を返す
+
             \end{itemize}
         \end{column}
         
     \end{columns}
 \end{frame}
 
-% ---------------------------------------------------
-% 2枚目：main関数の表示（17行目〜最後まで）
-% ---------------------------------------------------
+
 \begin{frame}[fragile]
-\frametitle{Q4-4 剰余関数(mod)の実装 (2/2)}
-    \begin{columns}[c]
-        
-        % 左側：コード後半
-        \begin{column}{0.65\textwidth}
-            \lstinputlisting[
-                language=C, 
-                basicstyle=\ttfamily\tiny,
-                numbers=left,
-                numberstyle=\tiny\color{gray},
-                xleftmargin=1.5em,
-                firstline=17 % 17行目（main関数）から最後までを表示
-            ]{./question4/C/4.c}
+\frametitle{Q4-4 コード例(C言語ver.)}
+    \begin{columns}[t]
+        \begin{column}{0.48\textwidth}
+            % 1行目から11行目までを表示
+            \lstinputlisting[language=C, lastline=20, basicstyle=\ttfamily\tiny]{./question4/C/4.c}
         \end{column}
         
-        % 右側：後半のポイント
-        \begin{column}{0.3\textwidth}
-            \small
-            \textbf{メイン関数の処理}
-            \begin{itemize}
-                \item 標準入力からの値の受け取り
-                \item 0除算エラーのハンドリング（\texttt{-1} が返った場合）
-                \item 結果のフォーマット出力
-            \end{itemize}
+        \begin{column}{0.48\textwidth}
+            % 12行目から最後までを表示
+            \lstinputlisting[language=C, firstline=21, lastline=40, basicstyle=\ttfamily\tiny]{./question4/C/4.c}
         \end{column}
-        
     \end{columns}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Q4-5 数値の等価演算子の実装}
+\frametitle{Q4-5 数値の等価演算子の実装(C言語ver.)}
     % [c] を指定することで、左右の列の「中心軸」が垂直方向に揃います
     \begin{columns}[c]
         
         % 左側：コード
-        \begin{column}{0.65\textwidth}
+        \begin{column}{0.45\textwidth}
             % basicstyle を \tiny に下げることで、下まで途切れずに表示させます
             \lstinputlisting[
                 language=C, 
-                basicstyle=\ttfamily\tiny,
+                basicstyle=\ttfamily\scriptsize,
                 numbers=left,
                 numberstyle=\tiny\color{gray},
-                xleftmargin=1.5em
+                xleftmargin=1.5em,
+                firstline=6,
+                lastline=13
             ]{./question4/C/5.c}
         \end{column}
         
         % 右側：アルゴリズムのポイント
-        \begin{column}{0.3\textwidth}
+        \begin{column}{0.5\textwidth}
             \small
             \textbf{アルゴリズムのポイント}
             \begin{itemize}
-                \item \texttt{iszero} で終了条件を判定
-                \item \texttt{pi} 関数で引数を1減らす
-                \item 自己呼び出しによる再帰構造
+                \item cut-off subtractionを原始再帰的に実装する \\ 
+                本問における，原始帰納的とは「値を一つ減らすpi関数という基本的な関数と
+                $n$回繰り返される再帰呼び出しを用いて完全に表現され，絶対に計算が終了し，答えが得られる」
+                と考えるとわかりやすい
+                \item \texttt{cut\_off\_sub} 関数は，$n-1$を行いながら自身を再帰呼び出しすることで，
+                $n$回繰り返される再帰呼び出しを実現．$n$回の\texttt{pi} 関数の呼び出しで$m$を$n$回減らすことができ，
+                $m-n$の値を得ることができる
             \end{itemize}
         \end{column}
-        
     \end{columns}
-
-    
 \end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Q4-5 コード例(C言語ver.)}
+    \lstinputlisting[language=C, basicstyle=\ttfamily\tiny]{./question4/C/5.c}
+\end{frame}
+

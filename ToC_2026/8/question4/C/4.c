@@ -16,7 +16,7 @@ int cut_off_sub(int m, int n) {
 
 int mod(int m, int n) {
     if (iszero(n)) {
-        return -1; // 0除算エラー
+        return -1; 
     }
     
     if (lt(m, n)) {

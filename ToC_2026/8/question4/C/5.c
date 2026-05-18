@@ -1,13 +1,13 @@
-// p.51 のカットオフ減算（cut-off subtraction）関数
 #include <stdio.h>
+
 int iszero(int m) { return m == 0; }
 int pi(int m) { if (m == 0) return 0; return m - 1; }
 
 int cut_off_sub(int m, int n) {
     if (iszero(n)) {
-        return m;
+        return m; 
     } else {
-        return cut_off_sub(pi(m), pi(n));
+        return pi(cut_off_sub(m, pi(n)));
     }
 }
 
