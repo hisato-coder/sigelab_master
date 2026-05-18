@@ -1,5 +1,5 @@
 \begin{frame}[fragile]
-\frametitle{Question 3 問題}
+\frametitle{Q3 問題}
 
 真理値
 $\text{t}, \text{f}$
@@ -10,7 +10,7 @@ $\land,\quad \lor,\quad \neg$
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{前提条件・定義(1)}
+\frametitle{Q3 前提条件・定義(1)}
 
 ここで, 問題文で与えられた真理値は
 
@@ -31,7 +31,7 @@ $\land,\quad \lor,\quad \neg$
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{前提条件・定義(2)}
+\frametitle{Q3 前提条件・定義(2)}
 
 また, 条件演算子は
 
@@ -59,7 +59,7 @@ p=\text{f}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{conjunction（論理積）$\land$ 解答}
+\frametitle{Q3 conjunction（論理積）$\land$ 解答}
 
 論理積の真理値表は次の通りである.
 
@@ -79,7 +79,7 @@ F & F & F
 
 \begin{frame}[fragile]
 
-\frametitle{$\land$ 続き}
+\frametitle{Q3 $\land$ 続き}
 
 これを条件式として表現すると, 
 
@@ -116,7 +116,7 @@ p\land q = pq\text{f}
 
 \begin{frame}[fragile]
 
-\frametitle{$\land$ 動作確認 ($\text{t}\land \text{t}$)}
+\frametitle{Q3 $\land$ 動作確認 ($\text{t}\land \text{t}$)}
 
 \begin{align*}
 (\lambda pq.pq\mathrm{f})\mathrm{tt}
@@ -150,7 +150,7 @@ p\land q = pq\text{f}
 
 \begin{frame}[fragile]
 
-\frametitle{$\land$ 動作確認 ($\text{t}\land \text{f}$)}
+\frametitle{Q3 $\land$ 動作確認 ($\text{t}\land \text{f}$)}
 
 \begin{align*}
 (\lambda pq.pq\mathrm{f})\mathrm{tf}
@@ -184,7 +184,7 @@ p\land q = pq\text{f}
 
 \begin{frame}[fragile]
 
-\frametitle{$\land$ 動作確認 ($\text{f}\land \text{t}$)}
+\frametitle{Q3 $\land$ 動作確認 ($\text{f}\land \text{t}$)}
 
 \begin{align*}
 (\lambda pq.pq\mathrm{f})\mathrm{ft}
@@ -218,7 +218,7 @@ p\land q = pq\text{f}
 
 \begin{frame}[fragile]
 
-\frametitle{$\land$ 動作確認 ($\text{f}\land \text{f}$)}
+\frametitle{Q3 $\land$ 動作確認 ($\text{f}\land \text{f}$)}
 
 \begin{align*}
 (\lambda pq.pq\mathrm{f})\mathrm{ff}
@@ -251,7 +251,7 @@ p\land q = pq\text{f}
 よって正しく論理積を表現している.
 
 \end{frame}
-\begin{frame}{disjunction（論理和）$\lor$ 解答}
+\begin{frame}{Q3 disjunction（論理和）$\lor$ 解答}
 
 論理和の真理値表は次の通りである.
 
@@ -272,7 +272,7 @@ F & F & F
 
 \begin{frame}[fragile]
 
-\frametitle{$\lor$ 続き}
+\frametitle{Q3 $\lor$ 続き}
 
 これを条件式として書くと, 
 
@@ -307,7 +307,7 @@ p\text{t}q
 
 \begin{frame}[fragile]
 
-\frametitle{$\lor$ 動作確認 ($\text{t}\lor \text{t}$)}
+\frametitle{Q3 $\lor$ 動作確認 ($\text{t}\lor \text{t}$)}
 
 \begin{align*}
 (\lambda pq.p\mathrm{t}q)\mathrm{tt}
@@ -341,7 +341,7 @@ p\text{t}q
 
 \begin{frame}[fragile]
 
-\frametitle{$\lor$ 動作確認 ($\text{t}\lor \text{f}$)}
+\frametitle{Q3 $\lor$ 動作確認 ($\text{t}\lor \text{f}$)}
 
 \begin{align*}
 (\lambda pq.p\mathrm{t}q)\mathrm{tf}
@@ -375,7 +375,7 @@ p\text{t}q
 
 \begin{frame}[fragile]
 
-\frametitle{$\lor$ 動作確認 ($\text{f}\lor \text{t}$)}
+\frametitle{Q3 $\lor$ 動作確認 ($\text{f}\lor \text{t}$)}
 
 \begin{align*}
 (\lambda pq.p\mathrm{t}q)\mathrm{ft}
@@ -409,7 +409,7 @@ p\text{t}q
 
 \begin{frame}[fragile]
 
-\frametitle{$\lor$ 動作確認 ($\text{f}\lor \text{f}$)}
+\frametitle{Q3 $\lor$ 動作確認 ($\text{f}\lor \text{f}$)}
 
 \begin{align*}
 (\lambda pq.p\mathrm{t}q)\mathrm{ff}
@@ -442,7 +442,7 @@ p\text{t}q
 よって正しく論理和を表現している.
 \end{frame}
 
-\begin{frame}{negation（否定）$\neg$ 解答}
+\begin{frame}{Q3 negation（否定）$\neg$ 解答}
 
 否定の真理値表は次の通りである.
 
@@ -461,7 +461,7 @@ F & T
 
 \begin{frame}[fragile]
 
-\frametitle{$\neg$ 続き}
+\frametitle{Q3 $\neg$ 続き}
 
 これを条件式として表現すると, 
 
@@ -496,7 +496,7 @@ p\text{ft}
 
 \begin{frame}[fragile]
 
-\frametitle{$\neg$ 動作確認 ($\neg \text{t}$)}
+\frametitle{Q3 $\neg$ 動作確認 ($\neg \text{t}$)}
 
 \begin{align*}
 (\lambda p.p\mathrm{ft})\mathrm{t}
@@ -524,7 +524,7 @@ p\text{ft}
 
 \begin{frame}[fragile]
 
-\frametitle{$\neg$ 動作確認 ($\neg \text{f}$)}
+\frametitle{Q3 $\neg$ 動作確認 ($\neg \text{f}$)}
 
 \begin{align*}
 (\lambda p.p\mathrm{ft})\mathrm{f}
