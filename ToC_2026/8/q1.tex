@@ -18,12 +18,12 @@
 \begin{itemize}
     \item 最小の事象について
     \begin{itemize}
-        \item $M$ が変数 $x$ のとき
-        \item $M$ が定数のとき
+        \item $M \equiv x$のとき
+        \item $M \equiv a$かつ$a \not\equiv x$のとき
     \end{itemize}
     \item ある事象が成り立つと仮定したとき，一つ大きい事象について成り立つことを示す
     \begin{itemize}
-        \item $M$ が $M_1 M_2$ のとき
+        \item $M \equiv M_1 M_2$のとき
         \item $M$ が $\lambda x. M_1$ のとき
         \item $M$ が $\lambda y. M_1$ ($y \neq x$) のとき
     \end{itemize}
@@ -107,7 +107,7 @@
     \end{align*}
     であることを証明せよ． ここで$Y \equiv (\lambda ux.x(uux))(\lambda ux.x(uux))$とする．
 
-    term $Y$は固定点コンビネータであり、すべてのterm $X$に対して$YX =_{\beta} X(YX)$が成り立つ．
+    term $Y$は不動点コンビネータであり、すべてのterm $X$に対して$YX =_{\beta} X(YX)$が成り立つ．
     \end{alertblock}
     \begin{itemize}
     \item \textbf{証明のポイント:} 
