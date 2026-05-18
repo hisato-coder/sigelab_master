@@ -2,7 +2,7 @@
 \frametitle{Q3 (1) 問題}
 %frameがスライド1枚を表す
 \begin{alertblock}{問い}
-    Q1(1)の言語$EPS_{TM} = \{\langle M \rangle \mid L(M) = \{\varepsilon\}\}$について、写像帰着を
+    Q1(1)の言語$EPS_{TM} = \{\langle M \rangle \mid M は\varepsilonを受け入れるTM\}$について、写像帰着を
     示すことで、Turing認識可能またはTuring認識不可能であることを証明しなさい。
 \end{alertblock}
 \begin{itemize}
@@ -22,7 +22,7 @@ $f (<M>) = <M, \varepsilon>$を定義する。
 
 このとき、以下が成り立つ：
 
-$M \text{ が } \varepsilon \text{ を受理する } \Longrightarrow  L(M) = \{\varepsilon\}$ なので $\langle M \rangle \in EPS_{TM}$
+$M \text{ が } \varepsilon \text{ を受理する } \Longrightarrow  L(M) = \varepsilon$ なので $\langle M \rangle \in EPS_{TM}$
 
 $M \text{ が } \varepsilon \text{ を受理しない } \Longrightarrow  L(M) = \emptyset$ なので $\langle M \rangle \notin EPS_{TM}$
 
