@@ -4,8 +4,7 @@
 
     次の λ項を β-正規形（β-normal form）まで簡約せよ。ただし，P と Q は β-正規形であるとする。
 
-    \begin{enumerate}
-        \renewcommand{\labelenumi}{(\arabic{enumi})}
+    \begin{enumerate}[(1)]
         \item $\bar{\sigma}\ \bar{3}$
         \item $add\ \bar{4}\ \bar{1}$
         \item $mul\ \bar{2}\ \bar{3}$
@@ -38,31 +37,31 @@
 \begin{frame}
 \frametitle{Q2 (1) 解答}
     
-\begin{align*}
+\begin{align}
     \bar{\sigma}\ \bar{3} &\equiv (\lambda uxy.x(uxy))\ (\lambda f.(\lambda x.(f(f(fx))))) &(\bar{\sigma},\bar{3}の定義より)\\
     &\equiv ((\lambda u.(\lambda x.(\lambda y.(x((ux)y)))))(\lambda f.(\lambda x.(f(f(f(x))))))) \\
     &\triangleright_{1\beta} ([(\lambda f.(\lambda x.(f(f(fx)))))/u](\lambda x.(\lambda y.(x(uxy))))) \\
     &\equiv (\lambda x.(\lambda y.(x((\lambda f.(\lambda x.(f(f(fx)))))xy)))) \\
     &\triangleright_{1\beta} (\lambda x.(\lambda y.(x([x/f](f(f(fx)))y)))) \\
-    &\triangleright_{1\beta} (\lambda x.(\lambda y.(x(\lambda w.[x/f][w/x](f(f(fx))))y))) \\
+    &\triangleright_{1\beta} (\lambda x.(\lambda y.(x(\lambda w.[x/f][w/x](f(f(fx))))y))) &(xを自由変数wに置換)\\
     &\equiv (\lambda x.(\lambda y.(x(\lambda w.[x/f](f(f(fw)))y)))) \\
-    &\equiv (\lambda x.(\lambda y.(x(\lambda w.(x(x(x(w))))y)))) \\
-\end{align*}
+    &\equiv (\lambda x.(\lambda y.(x(\lambda w.(x(x(xw)))y))))
+\end{align}
 \end{frame}
 
 \begin{frame}
 \frametitle{Q2 (1) 解答続き}
-\begin{align*}
-    &\triangleright_{1\beta} (\lambda x.(\lambda y.(x([y/w](x(x(x(w)))))))) \\
-    &\equiv (\lambda x.(\lambda y.(x(x(x(x(y))))))) \\
-    &\equiv_\alpha (\lambda f.(\lambda x.(f(f(f(f(x))))))) &(yをxに,xをfに置換)\\
+\begin{align}
+    &\triangleright_{1\beta} (\lambda x.(\lambda y.(x([y/w](x(x(xw))))))) \\
+    &\equiv (\lambda x.(\lambda y.(x(x(x(xy)))))) \\
+    &\equiv_\alpha (\lambda f.(\lambda x.(f(f(f(fx)))))) &(yをxに,xをfに置換)\\
     &\equiv \bar{4}
-\end{align*}
+\end{align}
 \end{frame}
 
 \begin{frame}
 \frametitle{Q2 (2) 解答}
-    \begin{align*}
+    \begin{align}
         add\ \bar{4}\ \bar{1} &\equiv (\lambda mnfx.nf(mfx))(\lambda f.(\lambda x.(f(f(f(f(x)))))))(\lambda f.(\lambda x.(f(x)))) & (add,\bar{4},\bar{1}の定義より)\\
         &\triangleright_{1\beta} ((\lambda nfx.nf(\lambda f.(\lambda x.(f(f(f(f(x))))))fx))(\lambda f.(\lambda x.(fx)))) \\
         &\triangleright_{1\beta} (\lambda fx.(\lambda f.(\lambda x.(fx)))f((\lambda f.(\lambda x.(f(f(f(fx))))))fx)) \\
@@ -72,12 +71,12 @@
         &\triangleright_{1\beta} (\lambda fx.f(f(f(f(fx))))) \\
         &\equiv (\lambda f.(\lambda x.(f(f(f(f(fx))))))) \\
         &\equiv \bar{5}
-    \end{align*}
+    \end{align}
 \end{frame}
 
 \begin{frame}
 \frametitle{Q2 (3) 解答}
-    \begin{align*}
+    \begin{align}
         mul\ \bar{2}\ \bar{3}
         &\equiv (\lambda mnfx.n(mf)x)\ (\lambda f.(\lambda x.(f(fx))))\ (\lambda f.(\lambda x.(f(f(fx))))) & (mul,\bar{2},\bar{3}の定義より)\\
         &\triangleright_{1\beta} (\lambda nfx.n((\lambda f.(\lambda x.(f(fx))))f)x)\ (\lambda f.(\lambda x.(f(f(fx))))) \\
@@ -86,23 +85,23 @@
         &\triangleright_{1\beta} (\lambda fx.((\lambda f.(\lambda x.(f(fx))))f)(((\lambda f.(\lambda x.(f(fx))))f)x)) \\
         &\triangleright_{1\beta} (\lambda fx.(\lambda x.(f(fx)))(((\lambda f.(\lambda x.(f(fx))))f)x)) \\
         &\triangleright_{1\beta} (\lambda fx.f(f(((\lambda f.(\lambda x.(f(fx))))f)x))) \\
-    \end{align*}
+    \end{align}
 \end{frame}
 
 \begin{frame}
 \frametitle{Q2 (3) 解答続き}
-    \begin{align*}
+    \begin{align}
         &\triangleright_{1\beta} (\lambda fx.f(f((\lambda x.(f(fx)))((\lambda x.(f(fx)))x)))) \\
         &\triangleright_{1\beta} (\lambda fx.f(f(f(f((\lambda x.(f(fx)))x))))) \\
         &\triangleright_{1\beta} (\lambda fx.f(f(f(f(f(fx)))))) \\
         &\equiv \lambda f.\lambda x.f(f(f(f(f(fx))))) \\
         &\equiv \bar{6}
-    \end{align*}
+    \end{align}
 \end{frame}
 
 \begin{frame}
     \frametitle{Q2 (4) 解答}
-    \begin{align*}
+    \begin{align}
         D_1(DPQ) &\equiv (\lambda x.x\ \bar{0})(DPQ) & (D_1の定義より)\\
         &\triangleright_{1\beta} [DPQ/x](x\ \bar{0}) \\
         &\equiv (DPQ)\ \bar{0} \\
@@ -112,24 +111,24 @@
         &\triangleright_{1\beta} ([Q/y](\lambda z.z(Ky)P))\ \bar{0} \\
         &\equiv (\lambda z.z(KQ)P)\ \bar{0} \\
         &\equiv (\lambda z.z(KQ)P)(\lambda f.(\lambda x.x)) & (\bar{0}の定義より)\\
-    \end{align*}
+    \end{align}
 \end{frame}
 
 \begin{frame}
     \frametitle{Q2 (4) 解答続き}
-    \begin{align*}
+    \begin{align}
         &\triangleright_{1\beta} ([(\lambda f.(\lambda x.x)/z](z(KQ)P)) \\
         &\equiv ((\lambda f.(\lambda x.x))(KQ)P) \\
         &\triangleright_{1\beta} (([KQ/f](\lambda x.x))P) \\
         &\equiv ((\lambda x.x)P) \\
         &\triangleright_{1\beta} ([P/x]x) \\
         &\equiv P
-    \end{align*}
+    \end{align}
 \end{frame}
 
 \begin{frame}
     \frametitle{Q2 (5) 解答}
-    \begin{align*}
+    \begin{align}
         D_2(DPQ) &\equiv (\lambda x.x\ \bar{1})(DPQ) & (D_2の定義より)\\
         &\triangleright_{1\beta} [DPQ/x](x\ \bar{1}) \\
         &\equiv (DPQ)\ \bar{1} \\
@@ -138,24 +137,24 @@
         &\triangleright_{1\beta} (\lambda z.z(KQ)P)\ \bar{1} \\
         &\triangleright_{1\beta} \bar{1}(KQ)P \\
         &\equiv (\lambda fx.(fx))(KQ)P 
-    \end{align*}
+    \end{align}
 \end{frame}
 
 \begin{frame}
     \frametitle{Q2 (5) 解答続き}
-    \begin{align*}
+    \begin{align}
         &\triangleright_{1\beta} (\lambda x.((KQ)x))P \\
         &\triangleright_{1\beta} (KQ)P \\
         &\equiv ((\lambda xy.x)Q)P \\
         &\triangleright_{1\beta} (\lambda y.Q)P \\
         &\triangleright_{1\beta} [P/x]Q \\
         &\equiv Q
-    \end{align*}
+    \end{align}
 \end{frame}
 
 \begin{frame}
     \frametitle{Q2 (6) 解答}
-    \begin{align*}
+    \begin{align}
         DPQ\bar{0} &\equiv ((\lambda xyz.z(Ky)x)P)Q\ \bar{0} & (Dの定義より)\\
         &\triangleright_{1\beta} (\lambda yz.z(Ky)P)Q\ \bar{0} \\
         &\triangleright_{1\beta} (\lambda z.z(KQ)P)\ \bar{0} \\
@@ -164,5 +163,5 @@
         &\triangleright_{1\beta} (\lambda x.x)P \\
         &\triangleright_{1\beta} [P/x]x \\
         &\equiv P
-    \end{align*}
+    \end{align}
 \end{frame}
