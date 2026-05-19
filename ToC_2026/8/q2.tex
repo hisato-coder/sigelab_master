@@ -43,7 +43,7 @@
     &\triangleright_{1\beta} ([(\lambda f.(\lambda x.(f(f(fx)))))/u](\lambda x.(\lambda y.(x(uxy))))) \\
     &\equiv (\lambda x.(\lambda y.(x((\lambda f.(\lambda x.(f(f(fx)))))xy)))) \\
     &\triangleright_{1\beta} (\lambda x.(\lambda y.(x([x/f](f(f(fx)))y)))) \\
-    &\triangleright_{1\beta} (\lambda x.(\lambda y.(x(\lambda w.[x/f][w/x](f(f(fx))))y))) &(xを自由変数wに置換)\\
+    &\triangleright_{1\beta} (\lambda x.(\lambda y.(x(\lambda w.[x/f][w/x](f(f(fx))))y))) &(束縛変数xをwに置換)\\
     &\equiv (\lambda x.(\lambda y.(x(\lambda w.[x/f](f(f(fw)))y)))) \\
     &\equiv (\lambda x.(\lambda y.(x(\lambda w.(x(x(xw)))y))))
 \end{align}
