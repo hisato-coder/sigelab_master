@@ -43,7 +43,7 @@
     &\triangleright_{1\beta} ([(\lambda f.(\lambda x.(f(f(fx)))))/u](\lambda x.(\lambda y.(x(uxy))))) \\
     &\equiv (\lambda x.(\lambda y.(x((\lambda f.(\lambda x.(f(f(fx)))))xy)))) \\
     &\triangleright_{1\beta} (\lambda x.(\lambda y.(x([x/f](f(f(fx)))y)))) \\
-    &\triangleright_{1\beta} (\lambda x.(\lambda y.(x(\lambda w.[x/f][w/x](f(f(fx))))y))) &(束縛変数xをwに置換)\\
+    &\equiv (\lambda x.(\lambda y.(x(\lambda w.[x/f][w/x](f(f(fx))))y))) &(束縛変数xをwに置換)\\
     &\equiv (\lambda x.(\lambda y.(x(\lambda w.[x/f](f(f(fw)))y)))) \\
     &\equiv (\lambda x.(\lambda y.(x(\lambda w.(x(x(xw)))y))))
 \end{align}
@@ -78,23 +78,20 @@
 \frametitle{Q2 (3) 解答}
     \begin{align}
         mul\ \bar{2}\ \bar{3}
-        &\equiv (\lambda mnfx.n(mf)x)\ (\lambda f.(\lambda x.(f(fx))))\ (\lambda f.(\lambda x.(f(f(fx))))) & (mul,\bar{2},\bar{3}の定義より)\\
-        &\triangleright_{1\beta} (\lambda nfx.n((\lambda f.(\lambda x.(f(fx))))f)x)\ (\lambda f.(\lambda x.(f(f(fx))))) \\
-        &\triangleright_{1\beta} (\lambda fx.(\lambda f.(\lambda x.(f(f(fx)))))((\lambda f.(\lambda x.(f(fx))))f)x) \\
-        &\triangleright_{1\beta} (\lambda fx.(\lambda x.((\lambda f.(\lambda x.(f(fx))))f)(((\lambda f.(\lambda x.(f(fx))))f)x))x) \\
-        &\triangleright_{1\beta} (\lambda fx.((\lambda f.(\lambda x.(f(fx))))f)(((\lambda f.(\lambda x.(f(fx))))f)x)) \\
-        &\triangleright_{1\beta} (\lambda fx.(\lambda x.(f(fx)))(((\lambda f.(\lambda x.(f(fx))))f)x)) \\
-        &\triangleright_{1\beta} (\lambda fx.f(f(((\lambda f.(\lambda x.(f(fx))))f)x))) \\
+        &\equiv (\lambda mnfx.n(mf)x)(\lambda fx.f(fx))(\lambda fx.f(f(fx))) & (mul,\bar{2},\bar{3}の定義より)\\
+        &\triangleright_{1\beta} (\lambda nfx.n((\lambda fx.f(fx))f)x)(\lambda fx.f(f(fx))) \\
+        &\triangleright_{1\beta} (\lambda fx.(\lambda fx.f(f(fx)))((\lambda fx.f(fx))f)x) \\
+        &\triangleright_{1\beta} (\lambda fx.(\lambda fx.f(f(fx))) (\lambda x.f(fx))x) \\
+        &\triangleright_{1\beta} (\lambda fx.(\lambda x.f(fx))((\lambda x.f(fx))((\lambda x.f(fx))x))) \\
+        &\triangleright_{1\beta} (\lambda fx.(\lambda x.f(fx))((\lambda x.f(fx))(f(fx)))) \\
     \end{align}
 \end{frame}
 
 \begin{frame}
 \frametitle{Q2 (3) 解答続き}
     \begin{align}
-        &\triangleright_{1\beta} (\lambda fx.f(f((\lambda x.(f(fx)))((\lambda x.(f(fx)))x)))) \\
-        &\triangleright_{1\beta} (\lambda fx.f(f(f(f((\lambda x.(f(fx)))x))))) \\
+        &\triangleright_{1\beta} (\lambda fx.(\lambda x.f(fx))(f(f(f(fx))))) \\
         &\triangleright_{1\beta} (\lambda fx.f(f(f(f(f(fx)))))) \\
-        &\equiv \lambda f.\lambda x.f(f(f(f(f(fx))))) \\
         &\equiv \bar{6}
     \end{align}
 \end{frame}
